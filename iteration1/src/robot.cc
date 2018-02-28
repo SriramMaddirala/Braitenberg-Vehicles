@@ -21,7 +21,8 @@ NAMESPACE_BEGIN(csci3081);
 Robot::Robot() :
     motion_handler_(this),
     motion_behavior_(this),
-    lives_(9) {
+    lives_(9),
+    basehit_(0) {
   set_type(kRobot);
   set_color(ROBOT_COLOR);
   set_pose(ROBOT_INIT_POS);
@@ -55,6 +56,7 @@ void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
    Base* base = dynamic_cast<Base*>(object); 
    object -> set_color(BASE_HIT_COLOR); 
    base -> set_captured(true);
+   inc_basehit();
   }
   else if((object_type == kObstacle)||(object_type == kRightWall)||(object_type == kLeftWall)||(object_type == kTopWall)||(object_type == kBottomWall)){
    set_lives(get_lives()-1);

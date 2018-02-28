@@ -97,8 +97,12 @@ class Robot : public ArenaMobileEntity {
 
   int get_lives() { return lives_; }
 
-  void set_lives(int l) { lives_ = l; }
+  int get_basehit() {return basehit_;}
 
+  void set_lives(int l) { lives_ = l; }
+  
+  void inc_basehit() {basehit_ = basehit_ + 1;}
+  
   MotionHandlerRobot get_motion_handler() { return motion_handler_; }
 
   MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_; }
@@ -111,6 +115,7 @@ class Robot : public ArenaMobileEntity {
   // Lives are decremented when the robot collides with anything.
   // When all the lives are gone, the game is lost.
   int lives_;
+  int basehit_;
 };
 
 NAMESPACE_END(csci3081);
