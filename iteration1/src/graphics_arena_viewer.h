@@ -198,8 +198,12 @@ class GraphicsArenaViewer : public GraphicsApp {
    * constructor is not defined. This `deletes` the default copy constructor.
    */
   GraphicsArenaViewer(const GraphicsArenaViewer &other) = delete;
+  
+  void AcceptCommunication(Communication com);
+  
+  Communication ConvertComm(Communication com);
 
- private:
+private:
   void DrawArena(NVGcontext *ctx);
   /**
    * @brief Draw a Robot using `nanogui`.

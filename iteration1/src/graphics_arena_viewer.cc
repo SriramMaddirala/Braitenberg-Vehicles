@@ -166,5 +166,14 @@ void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
   } /* for(i..) */
   DrawRobot(ctx, arena_->robot());
 }
-
+void GraphicsArenaViewer::AcceptCommunication(Communication com) {
+  ConvertComm(com);
+}
+Communication GraphicsArenaViewer::ConvertComm(Communication com) {
+  switch (com) {
+    case (kWon) :
+    case (kLost) : 
+    default: return kNone;
+  }
+}
 NAMESPACE_END(csci3081);

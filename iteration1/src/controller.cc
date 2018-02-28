@@ -42,10 +42,19 @@ void Controller::AdvanceTime(double dt) {
   }
   last_dt = 0;
   arena_->AdvanceTime(dt);
+  if((arena_->get_game_status())==0){
+    AcceptCommunication(kLost);
+  }
+  if((arena_->get_game_status())==1){
+    AcceptCommunication(kWon);
+  }
 }
 
 void Controller::AcceptCommunication(Communication com) {
   arena_->AcceptCommand(ConvertComm(com));
+}
+void Controller::AcceptCommunicationUp(Communication com) {
+  viewer_->AcceptCommunication(ConvertComm(com));
 }
 
 /** Converts communication from one source to appropriate communication to

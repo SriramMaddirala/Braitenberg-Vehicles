@@ -86,6 +86,7 @@ void Arena::UpdateEntitiesTimestep() {
    */
    if((robot_->get_lives()) ==0){
       set_game_status(LOST);
+       
    }
    if((robot_->get_basehit())==BASE_NUMBER){
      set_game_status(WON);
