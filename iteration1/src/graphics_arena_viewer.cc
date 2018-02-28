@@ -78,8 +78,14 @@ void GraphicsArenaViewer::OnSpecialKeyDown(int key,
   __unused int scancode, __unused int modifiers) {
     Communication key_value = kNone;
     switch (key) {
-      case GLFW_KEY_LEFT:
+      case GLFW_KEY_LEFT: key_value = kKeyLeft;
         break;
+      case GLFW_KEY_RIGHT: key_value = kKeyRight;
+	break;
+      case GLFW_KEY_DOWN: key_value= kKeyDown;
+	break;
+      case GLFW_KEY_UP: key_value = kKeyUp;
+	break;
       default: {}
     }
   controller_->AcceptCommunication(key_value);
