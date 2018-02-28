@@ -28,7 +28,7 @@
 #define GUI_MENU_GAP 10
 
 // arena
-#define N_OBSTACLES 1
+#define N_OBSTACLES 4
 #define MAX_OBSTACLES 8
 #define ARENA_X_DIM X_DIM
 #define ARENA_Y_DIM Y_DIM
