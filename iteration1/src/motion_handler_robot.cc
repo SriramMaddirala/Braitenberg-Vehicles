@@ -72,7 +72,7 @@ void MotionHandlerRobot::DecreaseSpeed() {
 
 void MotionHandlerRobot::UpdateVelocity() {
   if (entity_->get_touch_sensor()->get_output()) {
-    entity_->RelativeChangeHeading(+180);
+    set_velocity(0,0);
   }
 }
 

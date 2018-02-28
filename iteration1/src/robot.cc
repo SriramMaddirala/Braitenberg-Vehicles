@@ -50,6 +50,7 @@ void Robot::Reset() {
 
 void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
+  motion_handler_.UpdateVelocity();
 }
 
 void Robot::IncreaseSpeed() {
