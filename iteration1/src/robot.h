@@ -11,7 +11,7 @@
  * Includes
  ******************************************************************************/
 #include <string>
-
+#include "src/base.h"
 #include "src/arena_mobile_entity.h"
 #include "src/common.h"
 #include "src/motion_handler_robot.h"
@@ -24,7 +24,6 @@
 NAMESPACE_BEGIN(csci3081);
 
 class MotionBehaviorDifferential;
-
 /*******************************************************************************
  * Class Definitions
  ******************************************************************************/

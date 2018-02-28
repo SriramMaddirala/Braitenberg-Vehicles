@@ -69,7 +69,8 @@
   { 400, 400 }
 #define BASE_COLOR \
   { 255, 0, 0 }
-
+#define BASE_HIT_COLOR \
+  { 0, 255, 0 }
 // obstacle
 #define OBSTACLE_POSITION \
   { 200, 200 }

@@ -51,8 +51,15 @@ void Robot::Reset() {
 void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
   motion_handler_.UpdateVelocity();
+  if(object_type==kBase){
+   Base* base = dynamic_cast<Base*>(object); 
+   object -> set_color(BASE_HIT_COLOR); 
+   base -> set_captured(true);
+  }
+  else if((object_type == kObstacle)||(object_type == kRightWall)||(object_type == kLeftWall)||(object_type == kTopWall)||(object_type == kBottomWall)){
+   set_lives(get_lives()-1);
+  }
 }
-
 void Robot::IncreaseSpeed() {
   motion_handler_.IncreaseSpeed();
 }
