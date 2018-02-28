@@ -10,7 +10,7 @@
 #include <string>
 #include <ctime>
 #include <iostream>
-
+#include <cstdlib>
 #include "src/common.h"
 #include "src/entity_factory.h"
 #include "src/entity_type.h"
@@ -66,7 +66,7 @@ Obstacle* EntityFactory::CreateObstacle() {
   obstacle->set_type(kObstacle);
   obstacle->set_color(OBSTACLE_COLOR);
   obstacle->set_pose(SetPoseRandomly());
-  obstacle->set_radius(OBSTACLE_RADIUS);
+  obstacle->set_radius((rand() % 41 + 10));
   ++entity_count_;
   ++obstacle_count_;
   obstacle->set_id(obstacle_count_);
