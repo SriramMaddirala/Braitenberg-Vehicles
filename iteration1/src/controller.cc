@@ -51,7 +51,7 @@ void Controller::AdvanceTime(double dt) {
 }
 
 void Controller::AcceptCommunication(Communication com) {
-  arena_->AcceptCommand(ConvertComm(com));
+     arena_->AcceptCommand(ConvertComm(com));
 }
 void Controller::AcceptCommunicationUp(Communication com) {
   viewer_->AcceptCommunication(ConvertComm(com));
@@ -70,9 +70,9 @@ Communication Controller::ConvertComm(Communication com) {
     case (kKeyDown) : return kDecreaseSpeed;
     case (kKeyLeft) : return kTurnRight;
     case (kKeyRight) : return kTurnLeft;
-    case (kPlay) :
-    case (kPause) :
-    case (kNewGame) : 
+    case (kPlay) : return kPlay;
+    case (kPause) : return kPause;
+    case (kNewGame) : return kReset;
     default: return kNone;
   }
 }

@@ -9,7 +9,7 @@
  ******************************************************************************/
 #include "src/robot.h"
 #include "src/params.h"
-
+#include "src/pose.h"
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
@@ -43,7 +43,8 @@ void Robot::TimestepUpdate(unsigned int dt) {
 } /* TimestepUpdate() */
 
 void Robot::Reset() {
-  set_pose(ROBOT_INIT_POS);
+  set_pose(Pose(static_cast<double>((30 + (random() % 19) * 50)),
+        static_cast<double>((30 + (random() % 14) * 50))));
   motion_handler_.set_max_speed(ROBOT_MAX_SPEED);
   motion_handler_.set_max_angle(ROBOT_MAX_ANGLE);
   sensor_touch_->Reset();

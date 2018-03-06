@@ -73,22 +73,22 @@ class MotionHandler {
   /**
    * @brief Increase the overall speed of the entity by speed_delta.
    */
-  virtual void IncreaseSpeed() {}
+  virtual void IncreaseSpeed();
 
   /**
    * @brief Decrease the overall speed of the entity by speed_delta.
    */
-  virtual void DecreaseSpeed() {}
+  virtual void DecreaseSpeed();
 
   /**
    * @brief Turn the entity to the right by angle_delta (in degrees?)
    */
-  virtual void TurnRight() {}
+  virtual void TurnRight();
 
   /**
    * @brief Turn the entity to the left by angle_delta (in degrees?)
    */
-  virtual void TurnLeft() {}
+  virtual void TurnLeft();
 
   /**
    * @brief Getter method for the maximum speed of entity.

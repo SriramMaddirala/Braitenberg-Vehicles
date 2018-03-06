@@ -204,7 +204,8 @@ void Arena::AcceptCommand(Communication com) {
 		      break;
     case(kPlay):
     case(kPause):
-    case(kReset):
+    case(kReset): Reset();
+		  break;
     case(kNone):
     default: break;
   }

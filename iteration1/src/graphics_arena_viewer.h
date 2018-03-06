@@ -201,9 +201,10 @@ class GraphicsArenaViewer : public GraphicsApp {
   
   void AcceptCommunication(Communication com);
   
-  Communication ConvertComm(Communication com);
+  void OnNewBtnPressed();
 
 private:
+  void DrawText(NVGcontext *ctx);
   void DrawArena(NVGcontext *ctx);
   /**
    * @brief Draw a Robot using `nanogui`.
@@ -226,13 +227,14 @@ private:
    * @param[in] obstacle The Obstacle handle.
    */
   void DrawEntity(NVGcontext *ctx, const class ArenaEntity *const entity);
-
+  
   Controller *controller_;
   Arena *arena_;
   bool paused_{false};
-
+  Communication status_{kNone};
   // buttons
   nanogui::Button *playing_button_{nullptr};
+  nanogui::Button *new_button_{nullptr};
 };
 
 NAMESPACE_END(csci3081);

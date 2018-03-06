@@ -40,8 +40,13 @@ GraphicsArenaViewer::GraphicsArenaViewer(
   gui->addGroup("Simulation Control");
   playing_button_ =
     gui->addButton(
-      "Playing",
+      "Play",
       std::bind(&GraphicsArenaViewer::OnPlayingBtnPressed, this));
+  screen()->performLayout();
+  new_button_ =
+    gui->addButton(
+      "New Game",
+      std::bind(&GraphicsArenaViewer::OnNewBtnPressed, this));
   screen()->performLayout();
 }
 
@@ -60,13 +65,16 @@ void GraphicsArenaViewer::UpdateSimulation(double dt) {
  ******************************************************************************/
 void GraphicsArenaViewer::OnPlayingBtnPressed() {
   // Not implemented. Sample code provided to show how to implement.
+  paused_ = !paused_;
   if (!paused_) {
     playing_button_->setCaption("Playing");
   } else {
     playing_button_->setCaption("Paused");
   }
 }
-
+void GraphicsArenaViewer::OnNewBtnPressed() {
+   controller_->AcceptCommunication(kNewGame); 
+}
 /** OnSpecialKeyDown is called when the user presses down on one of the
   * special keys (e.g. the arrow keys).
   */
@@ -153,13 +161,24 @@ void GraphicsArenaViewer::DrawEntity(NVGcontext *ctx,
           static_cast<float>(entity->get_pose().y),
           entity->get_name().c_str(), nullptr);
 }
-
+void GraphicsArenaViewer::DrawText(NVGcontext *ctx){
+  switch(status_){
+		case kWon: nvgTextBox(ctx,300,300,500,"WINNER",NULL);
+		           paused_ = true;
+			   break;
+ 		case kLost: nvgTextBox(ctx,300,300,500,"LOSER",NULL);
+		            paused_ = true;
+			    break;
+		default: {}
+	}
+}
 void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
   // initialize text rendering settings
   nvgFontSize(ctx, 18.0f);
   nvgFontFace(ctx, "sans-bold");
   nvgTextAlign(ctx, NVG_ALIGN_CENTER | NVG_ALIGN_MIDDLE);
   DrawArena(ctx);
+  DrawText(ctx);
   std::vector<ArenaEntity *> entities = arena_->get_entities();
   for (auto &entity : entities) {
     DrawEntity(ctx, entity);
@@ -167,13 +186,6 @@ void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
   DrawRobot(ctx, arena_->robot());
 }
 void GraphicsArenaViewer::AcceptCommunication(Communication com) {
-  ConvertComm(com);
-}
-Communication GraphicsArenaViewer::ConvertComm(Communication com) {
-  switch (com) {
-    case (kWon) :
-    case (kLost) : 
-    default: return kNone;
-  }
+	status_= com;
 }
 NAMESPACE_END(csci3081);
