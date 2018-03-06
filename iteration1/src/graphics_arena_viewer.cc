@@ -68,8 +68,10 @@ void GraphicsArenaViewer::OnPlayingBtnPressed() {
   // Not implemented. Sample code provided to show how to implement.
   paused_ = !paused_;
   if (!paused_) {
+    controller_->AcceptCommunication(kPlay);
     playing_button_->setCaption("Playing");
   } else {
+    controller_->AcceptCommunication(kPause);
     playing_button_->setCaption("Paused");
   }
 }

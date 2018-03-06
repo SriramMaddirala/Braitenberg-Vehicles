@@ -27,7 +27,7 @@ Arena::Arena(const struct arena_params *const params)
       factory_(new EntityFactory),
       entities_(),
       mobile_entities_(),
-      game_status_(PLAYING) {
+      game_status_(3) {
   AddRobot();
   AddEntity(kBase, 3);
   AddEntity(kObstacle, params->n_obstacles);
@@ -64,6 +64,9 @@ void Arena::Reset() {
 // but originated from the graphics viewer.
 void Arena::AdvanceTime(double dt) {
   if (!(dt > 0)) {
+    return;
+  }
+  if(!(get_game_status() == 2)){
     return;
   }
   for (size_t i = 0; i < 1; ++i) {
@@ -202,8 +205,10 @@ void Arena::AcceptCommand(Communication com) {
 		     break;
     case(kTurnRight): robot_-> TurnRight();
 		      break;
-    case(kPlay):
-    case(kPause):
+    case(kPlay): set_game_status(2);
+		 break;
+    case(kPause): set_game_status(3);
+		  break;
     case(kReset): Reset();
 		  break;
     case(kNone):

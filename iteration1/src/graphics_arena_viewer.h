@@ -230,7 +230,7 @@ private:
   
   Controller *controller_;
   Arena *arena_;
-  bool paused_{false};
+  bool paused_{true};
   Communication status_{kNone};
   // buttons
   nanogui::Button *playing_button_{nullptr};
