@@ -80,5 +80,5 @@
 #define OBSTACLE_MAX_RADIUS 50
 #define OBSTACLE_COLOR \
   { 255, 255, 255 }
-
+#define OBSTACLE_INIT_SPEED 5
 #endif  // SRC_PARAMS_H_

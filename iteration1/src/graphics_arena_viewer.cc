@@ -9,7 +9,8 @@
  ******************************************************************************/
 #include <vector>
 #include <iostream>
-
+#include <string>
+#include <sstream>
 #include "src/graphics_arena_viewer.h"
 #include "src/arena_params.h"
 #include "src/rgb_color.h"
@@ -127,7 +128,11 @@ void GraphicsArenaViewer::DrawRobot(NVGcontext *ctx,
   nvgSave(ctx);
   nvgRotate(ctx, static_cast<float>(M_PI / 2.0));
   nvgFillColor(ctx, nvgRGBA(0, 0, 0, 255));
-  nvgText(ctx, 0.0, 10.0, robot->get_name().c_str(), nullptr);
+  std::string str; 
+  str= robot->get_name();
+  str += " ";
+  str += std::to_string(robot->get_lives());
+  nvgText(ctx, 0.0, 10.0, str.c_str(), nullptr);
   nvgRestore(ctx);
   nvgRestore(ctx);
 }

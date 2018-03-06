@@ -95,7 +95,7 @@ class Robot : public ArenaMobileEntity {
   */
   void TurnLeft();
 
-  int get_lives() { return lives_; }
+  int get_lives() const { return lives_; }
 
   int get_basehit() {return basehit_;}
 
