@@ -33,46 +33,40 @@ void MotionHandlerRobot::TurnRight() {
 }
 
 void MotionHandlerRobot::IncreaseSpeed() {
-  if(get_velocity().left + get_speed_delta() >= get_max_speed()){
-    if(get_velocity().right + get_speed_delta() >= get_max_speed()){
+  if (get_velocity().left + get_speed_delta() >= get_max_speed()) {
+    if (get_velocity().right + get_speed_delta() >= get_max_speed()) {
        set_velocity(get_max_speed(), get_max_speed());
-    }
-    else{
+    } else {
        set_velocity(get_max_speed(), get_velocity().right + get_speed_delta());
     }
-  }
-  else{
-    if(get_velocity().right + get_speed_delta() >= get_max_speed()){
+  } else {
+    if (get_velocity().right + get_speed_delta() >= get_max_speed()) {
        set_velocity(get_velocity().left + get_speed_delta(), get_max_speed());
-    }
-    else{
+    } else {
        set_velocity(get_velocity().left + get_speed_delta(), get_velocity().right + get_speed_delta());
     }
   }
 }
 
 void MotionHandlerRobot::DecreaseSpeed() {
- if(get_velocity().left - get_speed_delta() <= 0){
-    if(get_velocity().right - get_speed_delta() <= 0){
-       set_velocity(0,0);
-    }
-    else{
+  if (get_velocity().left - get_speed_delta() <= 0) {
+    if (get_velocity().right - get_speed_delta() <= 0) {
+       set_velocity(0, 0);
+    } else {
        set_velocity(0, get_velocity().right - get_speed_delta());
     }
-  }
-  else{
-    if(get_velocity().right - get_speed_delta() <= 0){
+  } else {
+    if (get_velocity().right - get_speed_delta() <= 0) {
        set_velocity(get_velocity().left - get_speed_delta(), 0);
-    }
-    else{
+    } else {
        set_velocity(get_velocity().left - get_speed_delta(), get_velocity().right - get_speed_delta());
     }
-  } 
+  }
 }
 
 void MotionHandlerRobot::UpdateVelocity() {
   if (entity_->get_touch_sensor()->get_output()) {
-    set_velocity(0,0);
+    set_velocity(0, 0);
   }
 }
 

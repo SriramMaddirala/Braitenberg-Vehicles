@@ -38,7 +38,6 @@ class Obstacle : public ArenaMobileEntity {
    * @brief Constructor.
    */
   Obstacle();
-  
   void Reset() override;
   /**
    * @brief Get the name of the Obstacle for visualization purposes, and to
@@ -47,7 +46,6 @@ class Obstacle : public ArenaMobileEntity {
   std::string get_name() const override {
     return "Obstacle" + std::to_string(get_id());
   }
-  
   void TimestepUpdate(unsigned int dt) override;
 
 
@@ -79,9 +77,9 @@ class Obstacle : public ArenaMobileEntity {
   MotionHandler get_motion_handler() { return motion_handler_; }
 
   MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_; }
-  
-  int get_state(){return state_;}
-  void set_state(int state){state_=state;}
+  int get_state() {return state_;}
+  void set_state(int state) {state_ = state;}
+
  private:
   // Manages pose and wheel velocities that change with time and collisions.
   MotionHandler motion_handler_;

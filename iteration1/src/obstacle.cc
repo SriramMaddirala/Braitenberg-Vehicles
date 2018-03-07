@@ -29,17 +29,14 @@ Obstacle::Obstacle():
 
 void Obstacle::TimestepUpdate(unsigned int dt) {
   // Update heading as indicated by touch sensor
-  if(get_state()==0){	
-     motion_handler_.UpdateVelocity();
-  }
-  else if(get_state()==1){
+  if (get_state() == 0) {
+    motion_handler_.UpdateVelocity();
+  } else if (get_state() == 1) {
     set_state(2);
-  }
-  else if(get_state()<=6){
-   motion_handler_.TurnLeft();
-   set_state(get_state()+1);
-  }
-  else{
+  } else if (get_state() <= 6) {
+    motion_handler_.TurnLeft();
+    set_state(get_state() + 1);
+  } else {
     motion_handler_.UpdateVelocity();
     set_state(0);
   }

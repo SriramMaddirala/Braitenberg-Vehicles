@@ -39,7 +39,7 @@ class MotionHandler {
    * @brief Constructor.
    */
   explicit MotionHandler(ArenaMobileEntity * ent)
-    : velocity_(0,0), entity_(ent) {}
+    : velocity_(0, 0), entity_(ent) {}
 
   virtual ~MotionHandler() {}
 

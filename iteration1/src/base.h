@@ -72,7 +72,7 @@ class Base : public ArenaImmobileEntity {
    */
   void set_captured(bool state) { captured_ = state; }
 
-private:
+ private:
   bool captured_;
 };
 

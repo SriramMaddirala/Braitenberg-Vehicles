@@ -95,21 +95,17 @@ class Robot : public ArenaMobileEntity {
   */
   void TurnLeft();
 
-  int get_lives() const { return lives_; }
+  int get_lives() const { return lives_;}
 
   int get_basehit() {return basehit_;}
 
-  void set_lives(int l) { lives_ = l; }
-  
-  void inc_basehit() {basehit_ = basehit_ + 1;}
-  
-  MotionHandlerRobot get_motion_handler() { return motion_handler_; }
-
-  MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_; }
-  
+  void set_lives(int l) { lives_ = l;}
+  void inc_basehit() {basehit_ = basehit_+1;}
+  MotionHandlerRobot get_motion_handler() { return motion_handler_;}
+  MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_;}
   void set_mercy(int time) {mercy_ = time;}
-  
   int get_mercy() {return mercy_;}
+
  private:
   // Manages pose and wheel velocities that change with time and collisions.
   MotionHandlerRobot motion_handler_;

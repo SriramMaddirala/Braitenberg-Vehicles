@@ -42,10 +42,10 @@ void Controller::AdvanceTime(double dt) {
   }
   last_dt = 0;
   arena_->AdvanceTime(dt);
-  if((arena_->get_game_status())==0){
+  if ((arena_->get_game_status()) == 0) {
     AcceptCommunication(kLost);
   }
-  if((arena_->get_game_status())==1){
+  if ((arena_->get_game_status()) == 1) {
     AcceptCommunication(kWon);
   }
 }

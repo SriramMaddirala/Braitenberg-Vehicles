@@ -40,12 +40,12 @@ void Robot::TimestepUpdate(unsigned int dt) {
 
   // Reset Sensor for next cycle
   sensor_touch_->Reset();
-  if(get_mercy()>0){
+  if (get_mercy() > 0) {
     set_mercy(get_mercy()-1);
     set_color(ROBOT_MERCY_COLOR);
   }
-  if(get_mercy()==0){
-   set_color(ROBOT_COLOR);
+  if (get_mercy() == 0) {
+  set_color(ROBOT_COLOR);
   }
 } /* TimestepUpdate() */
 
@@ -60,18 +60,17 @@ void Robot::Reset() {
 void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
   motion_handler_.UpdateVelocity();
-  if(object_type==kBase){
-   Base* base = dynamic_cast<Base*>(object); 
-   object -> set_color(BASE_HIT_COLOR); 
-   base -> set_captured(true);
-   inc_basehit();
+  if (object_type == kBase) {
+  Base* base = dynamic_cast<Base*>(object);
+  object -> set_color(BASE_HIT_COLOR);
+  base -> set_captured(true);
+  inc_basehit();
+  } else if ((object_type == kObstacle) || (object_type == kRightWall) || (object_type == kLeftWall) || (object_type == kTopWall) || (object_type == kBottomWall)) {
+  if (get_mercy() == 0) {
+  set_lives(get_lives()-1);
   }
-  else if((object_type == kObstacle)||(object_type == kRightWall)||(object_type == kLeftWall)||(object_type == kTopWall)||(object_type == kBottomWall)){
-   if(get_mercy()==0){
-    set_lives(get_lives()-1);
-    }
-   set_mercy(2);
-   set_color(ROBOT_MERCY_COLOR);
+  set_mercy(2);
+  set_color(ROBOT_MERCY_COLOR);
   }
 }
 void Robot::IncreaseSpeed() {

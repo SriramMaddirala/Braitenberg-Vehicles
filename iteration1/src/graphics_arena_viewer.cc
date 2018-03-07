@@ -76,7 +76,7 @@ void GraphicsArenaViewer::OnPlayingBtnPressed() {
   }
 }
 void GraphicsArenaViewer::OnNewBtnPressed() {
-   controller_->AcceptCommunication(kNewGame); 
+  controller_->AcceptCommunication(kNewGame);
 }
 /** OnSpecialKeyDown is called when the user presses down on one of the
   * special keys (e.g. the arrow keys).
@@ -87,18 +87,18 @@ void GraphicsArenaViewer::OnNewBtnPressed() {
  */
 void GraphicsArenaViewer::OnSpecialKeyDown(int key,
   __unused int scancode, __unused int modifiers) {
-    Communication key_value = kNone;
-    switch (key) {
-      case GLFW_KEY_LEFT: key_value = kKeyLeft;
-        break;
-      case GLFW_KEY_RIGHT: key_value = kKeyRight;
-	break;
-      case GLFW_KEY_DOWN: key_value= kKeyDown;
-	break;
-      case GLFW_KEY_UP: key_value = kKeyUp;
-	break;
-      default: {}
-    }
+  Communication key_value = kNone;
+  switch (key) {
+    case GLFW_KEY_LEFT: key_value = kKeyLeft;
+    break;
+    case GLFW_KEY_RIGHT: key_value = kKeyRight;
+    break;
+    case GLFW_KEY_DOWN: key_value= kKeyDown;
+    break;
+    case GLFW_KEY_UP: key_value = kKeyUp;
+    break;
+    default: {}
+  }
   controller_->AcceptCommunication(key_value);
 }
 
@@ -130,8 +130,8 @@ void GraphicsArenaViewer::DrawRobot(NVGcontext *ctx,
   nvgSave(ctx);
   nvgRotate(ctx, static_cast<float>(M_PI / 2.0));
   nvgFillColor(ctx, nvgRGBA(0, 0, 0, 255));
-  std::string str; 
-  str= robot->get_name();
+  std::string str;
+  str = robot->get_name();
   str += " ";
   str += std::to_string(robot->get_lives());
   nvgText(ctx, 0.0, 10.0, str.c_str(), nullptr);
@@ -168,16 +168,16 @@ void GraphicsArenaViewer::DrawEntity(NVGcontext *ctx,
           static_cast<float>(entity->get_pose().y),
           entity->get_name().c_str(), nullptr);
 }
-void GraphicsArenaViewer::DrawText(NVGcontext *ctx){
-  switch(status_){
-		case kWon: nvgText(ctx,40,100,"WINNER",NULL);
-		           paused_ = true;
-			   break;
- 		case kLost: nvgText(ctx,40,100,"LOSER",NULL);
-		            paused_ = true;
-			    break;
-		default: {}
-	}
+void GraphicsArenaViewer::DrawText(NVGcontext *ctx) {
+  switch (status_) {
+    case kWon: nvgText(ctx, 40, 100, "WINNER", NULL);
+    paused_ = true;
+    break;
+    case kLost: nvgText(ctx, 40, 100, "LOSER", NULL);
+    paused_ = true;
+    break;
+    default: {}
+  }
 }
 void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
   // initialize text rendering settings
@@ -193,6 +193,6 @@ void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
   DrawRobot(ctx, arena_->robot());
 }
 void GraphicsArenaViewer::AcceptCommunication(Communication com) {
-	status_= com;
+  status_ = com;
 }
 NAMESPACE_END(csci3081);

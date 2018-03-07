@@ -64,7 +64,7 @@ class Controller {
    * @brief AcceptCommunication from either the viewer or the Arena
    */
   void AcceptCommunication(Communication com);
-  
+
   void AcceptCommunicationUp(Communication com);
 
   /**

@@ -66,7 +66,7 @@ void Arena::AdvanceTime(double dt) {
   if (!(dt > 0)) {
     return;
   }
-  if(!(get_game_status() == 2)){
+  if (!(get_game_status() == 2)) {
     return;
   }
   for (size_t i = 0; i < 1; ++i) {
@@ -87,12 +87,12 @@ void Arena::UpdateEntitiesTimestep() {
   /*
    * Check for win/loss
    */
-   if((robot_->get_lives()) ==0){
-      set_game_status(LOST);
-      robot_->set_color(OBSTACLE_COLOR);
-      return;
+   if ((robot_->get_lives()) == 0) {
+     set_game_status(LOST);      
+     robot_->set_color(OBSTACLE_COLOR);
+     return;
    }
-   if((robot_->get_basehit())==BASE_NUMBER){
+   if ((robot_->get_basehit()) == BASE_NUMBER) {
      set_game_status(WON);
      robot_->set_color(BASE_HIT_COLOR);
      return;
@@ -201,19 +201,19 @@ void Arena::AdjustEntityOverlap(ArenaMobileEntity * const mobile_e,
 void Arena::AcceptCommand(Communication com) {
   switch (com) {
     case(kIncreaseSpeed): robot_->IncreaseSpeed();
-			  break;
+      break;
     case(kDecreaseSpeed): robot_->DecreaseSpeed();
-			  break;
+      break;
     case(kTurnLeft): robot_->TurnLeft();
-		     break;
+      break;
     case(kTurnRight): robot_-> TurnRight();
-		      break;
+      break;
     case(kPlay): set_game_status(2);
-		 break;
+      break;
     case(kPause): set_game_status(3);
-		  break;
+      break;
     case(kReset): Reset();
-		  break;
+      break;
     case(kNone):
     default: break;
   }

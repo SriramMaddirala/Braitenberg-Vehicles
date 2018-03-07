@@ -198,12 +198,12 @@ class GraphicsArenaViewer : public GraphicsApp {
    * constructor is not defined. This `deletes` the default copy constructor.
    */
   GraphicsArenaViewer(const GraphicsArenaViewer &other) = delete;
-  
+
   void AcceptCommunication(Communication com);
-  
+
   void OnNewBtnPressed();
 
-private:
+ private:
   void DrawText(NVGcontext *ctx);
   void DrawArena(NVGcontext *ctx);
   /**
@@ -227,7 +227,7 @@ private:
    * @param[in] obstacle The Obstacle handle.
    */
   void DrawEntity(NVGcontext *ctx, const class ArenaEntity *const entity);
-  
+
   Controller *controller_;
   Arena *arena_;
   bool paused_{true};

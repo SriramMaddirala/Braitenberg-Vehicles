@@ -69,4 +69,4 @@ class ArenaMobileEntity : public ArenaEntity {
 
 NAMESPACE_END(csci3081);
 
-#endif /* SRC_ARENA_MOBILE_ENTITY_H_ */
+#endif  //  SRC_ARENA_MOBILE_ENTITY_H_

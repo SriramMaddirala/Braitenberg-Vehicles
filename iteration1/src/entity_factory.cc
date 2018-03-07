@@ -67,7 +67,7 @@ Obstacle* EntityFactory::CreateObstacle() {
   obstacle->set_color(OBSTACLE_COLOR);
   obstacle->set_pose(SetPoseRandomly());
   obstacle->set_radius((rand() % 41 + 10));
-  obstacle->get_motion_handler().set_velocity(OBSTACLE_INIT_SPEED,OBSTACLE_INIT_SPEED);
+  obstacle->get_motion_handler().set_velocity(OBSTACLE_INIT_SPEED, OBSTACLE_INIT_SPEED);
   ++entity_count_;
   ++obstacle_count_;
   obstacle->set_id(obstacle_count_);
