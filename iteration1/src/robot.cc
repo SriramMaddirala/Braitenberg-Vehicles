@@ -42,6 +42,10 @@ void Robot::TimestepUpdate(unsigned int dt) {
   sensor_touch_->Reset();
   if(get_mercy()>0){
     set_mercy(get_mercy()-1);
+    set_color(ROBOT_MERCY_COLOR);
+  }
+  if(get_mercy()==0){
+   set_color(ROBOT_COLOR);
   }
 } /* TimestepUpdate() */
 
@@ -67,6 +71,7 @@ void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
     set_lives(get_lives()-1);
     }
    set_mercy(2);
+   set_color(ROBOT_MERCY_COLOR);
   }
 }
 void Robot::IncreaseSpeed() {
