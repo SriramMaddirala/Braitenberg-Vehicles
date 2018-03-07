@@ -48,7 +48,7 @@ class MotionHandler {
   /**
   * @brief Update the heading angle according to the touch sensor reading.
   */
-  virtual void UpdateVelocity() {}
+  virtual void UpdateVelocity();
 
   /**
    * @brief Getter for speed delta used when user requests speed increase.

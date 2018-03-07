@@ -40,6 +40,9 @@ void Robot::TimestepUpdate(unsigned int dt) {
 
   // Reset Sensor for next cycle
   sensor_touch_->Reset();
+  if(get_mercy()>0){
+    set_mercy(get_mercy()-1);
+  }
 } /* TimestepUpdate() */
 
 void Robot::Reset() {
@@ -60,7 +63,10 @@ void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
    inc_basehit();
   }
   else if((object_type == kObstacle)||(object_type == kRightWall)||(object_type == kLeftWall)||(object_type == kTopWall)||(object_type == kBottomWall)){
-   set_lives(get_lives()-1);
+   if(get_mercy()==0){
+    set_lives(get_lives()-1);
+    }
+   set_mercy(2);
   }
 }
 void Robot::IncreaseSpeed() {

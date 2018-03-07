@@ -106,7 +106,10 @@ class Robot : public ArenaMobileEntity {
   MotionHandlerRobot get_motion_handler() { return motion_handler_; }
 
   MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_; }
-
+  
+  void set_mercy(int time) {mercy_ = time;}
+  
+  int get_mercy() {return mercy_;}
  private:
   // Manages pose and wheel velocities that change with time and collisions.
   MotionHandlerRobot motion_handler_;
@@ -116,6 +119,7 @@ class Robot : public ArenaMobileEntity {
   // When all the lives are gone, the game is lost.
   int lives_;
   int basehit_;
+  int mercy_{0};
 };
 
 NAMESPACE_END(csci3081);

@@ -170,10 +170,10 @@ void GraphicsArenaViewer::DrawEntity(NVGcontext *ctx,
 }
 void GraphicsArenaViewer::DrawText(NVGcontext *ctx){
   switch(status_){
-		case kWon: nvgTextBox(ctx,300,300,500,"WINNER",NULL);
+		case kWon: nvgText(ctx,40,100,"WINNER",NULL);
 		           paused_ = true;
 			   break;
- 		case kLost: nvgTextBox(ctx,300,300,500,"LOSER",NULL);
+ 		case kLost: nvgText(ctx,40,100,"LOSER",NULL);
 		            paused_ = true;
 			    break;
 		default: {}

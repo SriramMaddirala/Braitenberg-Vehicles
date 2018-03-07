@@ -79,13 +79,15 @@ class Obstacle : public ArenaMobileEntity {
   MotionHandler get_motion_handler() { return motion_handler_; }
 
   MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_; }
-
+  
+  int get_state(){return state_;}
+  void set_state(int state){state_=state;}
  private:
   // Manages pose and wheel velocities that change with time and collisions.
   MotionHandler motion_handler_;
   // Calculates changes in pose based on elapsed time and wheel velocities.
   MotionBehaviorDifferential motion_behavior_;
-
+  int state_{0};
 };
 
 NAMESPACE_END(csci3081);

@@ -89,10 +89,13 @@ void Arena::UpdateEntitiesTimestep() {
    */
    if((robot_->get_lives()) ==0){
       set_game_status(LOST);
-       
+      robot_->set_color(OBSTACLE_COLOR);
+      return;
    }
    if((robot_->get_basehit())==BASE_NUMBER){
      set_game_status(WON);
+     robot_->set_color(BASE_HIT_COLOR);
+     return;
    }
    /* Determine if any mobile entity is colliding with wall.
    * Adjust the position accordingly so it doesn't overlap.

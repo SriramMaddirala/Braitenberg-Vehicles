@@ -29,8 +29,20 @@ Obstacle::Obstacle():
 
 void Obstacle::TimestepUpdate(unsigned int dt) {
   // Update heading as indicated by touch sensor
-  motion_handler_.UpdateVelocity();
-
+  if(get_state()==0){	
+     motion_handler_.UpdateVelocity();
+  }
+  else if(get_state()==1){
+    set_state(2);
+  }
+  else if(get_state()<=6){
+   motion_handler_.TurnLeft();
+   set_state(get_state()+1);
+  }
+  else{
+    motion_handler_.UpdateVelocity();
+    set_state(0);
+  }
   // Use velocity and position to update position
   motion_behavior_.UpdatePose(dt, motion_handler_.get_velocity());
 
@@ -41,6 +53,7 @@ void Obstacle::TimestepUpdate(unsigned int dt) {
 void Obstacle::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
   motion_handler_.UpdateVelocity();
+  set_state(1);
 }
 
 void Obstacle::Reset() {

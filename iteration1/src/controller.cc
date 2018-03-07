@@ -54,7 +54,7 @@ void Controller::AcceptCommunication(Communication com) {
      arena_->AcceptCommand(ConvertComm(com));
 }
 void Controller::AcceptCommunicationUp(Communication com) {
-  viewer_->AcceptCommunication(ConvertComm(com));
+  viewer_->AcceptCommunication(com);
 }
 
 /** Converts communication from one source to appropriate communication to
