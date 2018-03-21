@@ -22,7 +22,7 @@ NAMESPACE_BEGIN(csci3081);
 Controller::Controller() : last_dt(0) {
   // Initialize default properties for various arena entities
   arena_params aparams;
-  aparams.n_obstacles = N_OBSTACLES;
+  aparams.n_light = N_LIGHT;
   aparams.x_dim = ARENA_X_DIM;
   aparams.y_dim = ARENA_Y_DIM;
 

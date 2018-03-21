@@ -9,10 +9,10 @@
  * \section overview
  * This project uses main to instantiate the controller which in turn instantiates a graphicsarenaviewer class
 the viewer class is in control of the gui and the communication from the viewer to the game
-the game is essentially to avoid the obstacles and walls while hitting the bases with the robot
+the game is essentially to avoid the lights and walls while hitting the bases with the robot
 upon collision of the robot with an object, the robot (as well as the object if it is an obstacle)
 have their handle collision functions call which respectively reduce a life, start mercy period and stop movement for the robot 
-and start an arc reversal to move away for the obstacle
+and start an arc reversal to move away for the lights
 communication that the game is over (i.e. all lives for the robot are lost or the game is won by hitting the bases) occurs through
 arena checking game status which is an attribute of the robot and then controller querying every timestep for this status
 when controller gets the information it then sends it to gui via acceptcommunication and then gui neccessitates a newgame being called
