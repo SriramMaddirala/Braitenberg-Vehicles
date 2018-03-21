@@ -30,7 +30,7 @@ Arena::Arena(const struct arena_params *const params)
       game_status_(3) {
   AddRobot();
   AddEntity(kBase, 3);
-  AddEntity(kObstacle, params->n_obstacles);
+  AddEntity(kLight, params->n_light);
 }
 
 Arena::~Arena() {
@@ -89,7 +89,7 @@ void Arena::UpdateEntitiesTimestep() {
    */
    if ((robot_->get_lives()) == 0) {
      set_game_status(LOST);      
-     robot_->set_color(OBSTACLE_COLOR);
+     robot_->set_color(LIGHT_COLOR);
      return;
    }
    if ((robot_->get_basehit()) == BASE_NUMBER) {

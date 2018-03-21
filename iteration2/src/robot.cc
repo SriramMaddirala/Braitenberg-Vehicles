@@ -65,7 +65,7 @@ void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   object -> set_color(BASE_HIT_COLOR);
   base -> set_captured(true);
   inc_basehit();
-  } else if ((object_type == kObstacle) || (object_type == kRightWall) || (object_type == kLeftWall) || (object_type == kTopWall) || (object_type == kBottomWall)) {
+  } else if ((object_type == kLight) || (object_type == kRightWall) || (object_type == kLeftWall) || (object_type == kTopWall) || (object_type == kBottomWall)) {
   if (get_mercy() == 0) {
   set_lives(get_lives()-1);
   }
