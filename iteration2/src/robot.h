@@ -17,7 +17,8 @@
 #include "src/motion_handler_robot.h"
 #include "src/motion_behavior_differential.h"
 #include "src/entity_type.h"
-
+#include "src/sensor.h"
+#include "src/light_sensor.h"
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
@@ -116,6 +117,9 @@ class Robot : public ArenaMobileEntity {
   int lives_;
   int basehit_;
   int mercy_{0};
+  public:
+  Sensor sensor_();
+  LightSensor light_sensor_();
 };
 
 NAMESPACE_END(csci3081);

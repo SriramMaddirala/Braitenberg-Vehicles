@@ -38,7 +38,13 @@ enum Communication {
   kWon,
   kLost,
 
-  kNone   // in case it is needed
+  kNone,   // in case it is needed
+
+  kCollideWall,
+  kCollideRobot,
+  kCollideLight,
+  kCollideFood
+
 };
 
 NAMESPACE_END(csci3081);
