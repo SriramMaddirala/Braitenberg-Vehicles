@@ -31,8 +31,6 @@ CS3081DIR = /classes/csel-s18c3081
 # build and run the unittest executable.
 
 DEFINES += -DMY_SENSOR
-DEFINES += -DMY_MOTION_HANDLER
-
 # Directory of source files for the project we wish to test
 PROJROOTDIR = ..
 PROJSRCDIR = $(PROJROOTDIR)/src

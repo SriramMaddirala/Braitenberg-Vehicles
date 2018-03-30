@@ -106,8 +106,11 @@ class Robot : public ArenaMobileEntity {
   MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_;}
   void set_mercy(int time) {mercy_ = time;}
   int get_mercy() {return mercy_;}
-
- private:
+  void set_behavior(int behave) {behavior = behave;}
+  int get_behavior() {return behavior;}
+  void set_hunger(int eat) {hunger = eat;}
+  int get_hunger() {return hunger;}
+  private:
   // Manages pose and wheel velocities that change with time and collisions.
   MotionHandlerRobot motion_handler_;
   // Calculates changes in pose based on elapsed time and wheel velocities.
@@ -118,9 +121,12 @@ class Robot : public ArenaMobileEntity {
   int basehit_;
   int mercy_{0};
   public:
-  Sensor sensor_();
-  LightSensor light_sensor_();
+  int behavior{0};
+  int hunger{1};
+  LightSensor left();
+  LightSensor right();  
 };
+
 
 NAMESPACE_END(csci3081);
 

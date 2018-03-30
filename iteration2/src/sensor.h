@@ -7,7 +7,7 @@
 #include <utility>
 #include <vector>
 #include <iostream>
-
+#include "src/communication.h"
 #include "src/common.h"
 #include "src/pose.h"
 #include "src/entity_type.h"
@@ -23,7 +23,7 @@ class Sensor{
  Sensor();
  ~Sensor();
  void GetMotionHandler();
- void AcceptCommand(__unused Communication cmd);
+ void AcceptCommand(__unused Communication cmd,__unused int reading);
  private:
   MotionHandler motion_handler_;
 }

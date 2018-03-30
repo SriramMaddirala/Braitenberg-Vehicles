@@ -42,7 +42,7 @@ enum Communication {
 
   kCollideWall,
   kCollideRobot,
-  kCollideLight,
+  kCollidingLight,
   kCollideFood
 
 };
