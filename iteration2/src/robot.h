@@ -118,7 +118,6 @@ class Robot : public ArenaMobileEntity {
   int mercy_{0};
 };
 
-
 NAMESPACE_END(csci3081);
 
 #endif  // SRC_ROBOT_H_

@@ -74,7 +74,7 @@ class Light : public ArenaMobileEntity {
   */
   void TurnLeft();
 
-  MotionHandler get_motion_handler() { return motion_handler_; }
+  MotionHandler& get_motion_handler() { return motion_handler_; }
 
   MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_; }
   int get_state() {return state_;}
