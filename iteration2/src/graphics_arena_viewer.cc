@@ -120,7 +120,7 @@ void GraphicsArenaViewer::DrawRobotSensor(NVGcontext *ctx, const Robot *const ro
   nvgBeginPath(ctx);
   nvgMoveTo(ctx, 0.0, 0.0);
   nvgLineTo(ctx, 5, 0.0);
-  nvgArc(ctx, 0.0, 0.0, 1, 0.0, -45, NVG_CCW);
+  nvgArc(ctx, 0.0, 0.0, 10, 0.0, -45, NVG_CCW);
   nvgLineTo(ctx, 0.0, 0.0);
   nvgStrokeColor(ctx, nvgRGBA(100, 0, 0, 100));
   nvgStroke(ctx);
@@ -132,7 +132,7 @@ void GraphicsArenaViewer::DrawRobotSensor(NVGcontext *ctx, const Robot *const ro
   nvgBeginPath(ctx);
   nvgMoveTo(ctx, 0.0, 0.0);
   nvgLineTo(ctx, 5, 0.0);
-  nvgArc(ctx, 0.0, 0.0, 1, 0.0, -0.5 * 45, NVG_CCW);
+  nvgArc(ctx, 0.0, 0.0, 10, 0.0, -0.5 * 45, NVG_CCW);
   nvgLineTo(ctx, 0.0, 0.0);
   nvgFillColor(ctx, nvgRGBA(100, 10, 255, 150));
   nvgFill(ctx);
@@ -143,7 +143,7 @@ void GraphicsArenaViewer::DrawRobotSensor(NVGcontext *ctx, const Robot *const ro
   nvgBeginPath(ctx);
   nvgMoveTo(ctx, 0.0, 0.0);
   nvgLineTo(ctx, 5, 0.0);
-  nvgArc(ctx, 0.0, 0.0, 1, 0.0, -0.5 * 45, NVG_CCW);
+  nvgArc(ctx, 0.0, 0.0, 10, 0.0, -0.5 * 45, NVG_CCW);
   nvgLineTo(ctx, 0.0, 0.0);
   nvgFillColor(ctx, nvgRGBA(255, 255, 100, 150));
   nvgFill(ctx);
