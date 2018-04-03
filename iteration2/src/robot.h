@@ -123,9 +123,7 @@ class Robot : public ArenaMobileEntity {
   public:
   int behavior{0};
   int hunger{1};
-  LightSensor left();
-  LightSensor right();  
-};
+  };
 
 
 NAMESPACE_END(csci3081);
