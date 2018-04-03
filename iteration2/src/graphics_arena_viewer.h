@@ -216,7 +216,7 @@ class GraphicsArenaViewer : public GraphicsApp {
    * @param[in] robot The Robot handle.
    */
   void DrawRobot(NVGcontext *ctx, const class Robot *const robot);
-
+  void DrawRobotSensor(NVGcontext *ctx, const class Robot *const robot);
   /**
    * @brief Draw an Obstacle in the Arena using `nanogui`.
    *

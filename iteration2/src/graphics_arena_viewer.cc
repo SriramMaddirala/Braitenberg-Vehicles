@@ -105,6 +105,53 @@ void GraphicsArenaViewer::OnSpecialKeyDown(int key,
 /*******************************************************************************
  * Drawing of Entities in Arena
  ******************************************************************************/
+void GraphicsArenaViewer::DrawRobotSensor(NVGcontext *ctx, const Robot *const robot){
+  double xpos = static_cast<float>(robot->get_pose().x);
+  double ypos = static_cast<float>(robot->get_pose().y);
+  double angle = (robot->get_pose().theta)*M_PI/180;  
+
+  nvgSave(ctx);
+  nvgTranslate(ctx, xpos, ypos);
+  nvgRotate(ctx, angle);
+
+  // sensor cone outline
+  nvgSave(ctx);
+  nvgRotate(ctx, 0.5 * 45);
+  nvgBeginPath(ctx);
+  nvgMoveTo(ctx, 0.0, 0.0);
+  nvgLineTo(ctx, 15, 0.0);
+  nvgArc(ctx, 0.0, 0.0, 15, 0.0, -45, NVG_CCW);
+  nvgLineTo(ctx, 0.0, 0.0);
+  nvgStrokeColor(ctx, nvgRGBA(0, 0, 0, 100));
+  nvgStroke(ctx);
+  nvgRestore(ctx);
+
+  // blue for right sensor cone
+  nvgSave(ctx);
+  nvgRotate(ctx, 0.5 * 45);
+  nvgBeginPath(ctx);
+  nvgMoveTo(ctx, 0.0, 0.0);
+  nvgLineTo(ctx, 15, 0.0);
+  nvgArc(ctx, 0.0, 0.0, 15, 0.0, -0.5 * 45, NVG_CCW);
+  nvgLineTo(ctx, 0.0, 0.0);
+  nvgFillColor(ctx, nvgRGBA(100, 100, 255, 150));
+  nvgFill(ctx);
+  nvgRestore(ctx);
+
+  // yellow for left sensor cone
+  nvgSave(ctx);
+  nvgBeginPath(ctx);
+  nvgMoveTo(ctx, 0.0, 0.0);
+  nvgLineTo(ctx, 15, 0.0);
+  nvgArc(ctx, 0.0, 0.0, 15, 0.0, -0.5 * 45, NVG_CCW);
+  nvgLineTo(ctx, 0.0, 0.0);
+  nvgFillColor(ctx, nvgRGBA(255, 255, 100, 150));
+  nvgFill(ctx);
+  nvgRestore(ctx);
+
+  nvgRestore(ctx);
+
+}
 void GraphicsArenaViewer::DrawRobot(NVGcontext *ctx,
                                      const Robot *const robot) {
   // translate and rotate all graphics calls that follow so that they are
@@ -190,7 +237,11 @@ void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
   for (auto &entity : entities) {
     DrawEntity(ctx, entity);
   } /* for(i..) */
-  DrawRobot(ctx, arena_->robot());
+ // std::vector<Robot *> robots = arena_->robot();
+  //for (auto &robot : robots) {
+    DrawRobot(ctx, arena_->robot());
+    DrawRobotSensor(ctx, arena_->robot());
+  //}
 }
 void GraphicsArenaViewer::AcceptCommunication(Communication com) {
   status_ = com;

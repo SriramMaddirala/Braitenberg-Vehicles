@@ -18,12 +18,12 @@
  ******************************************************************************/
 NAMESPACE_BEGIN(csci3081);
 
-class Sensor{
+class Sensor: public ArenaImmobileEntity {
  public:
  Sensor();
  ~Sensor();
  void GetMotionHandler();
- void AcceptCommand(__unused Communication cmd,__unused int reading);
+ void AcceptCommand(Communication cmd, int reading);
  private:
   MotionHandler motion_handler_;
 }

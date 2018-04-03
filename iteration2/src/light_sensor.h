@@ -23,7 +23,7 @@ class LightSensor: public Sensor{
  LightSensor();
  ~LightSensor();
  void GetMotionHandler();
- void AcceptCommand(__unused Communication cmd, __unused int reading);
+ void AcceptCommand(Communication cmd, int reading);
  private:
  MotionHandler motion_handler_;
  }
