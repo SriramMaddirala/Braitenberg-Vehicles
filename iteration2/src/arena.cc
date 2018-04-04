@@ -109,6 +109,8 @@ void Arena::UpdateEntitiesTimestep() {
     if(kLight==ent1->get_type()){
 	robot_->get_left().CalculateReading(ent1->get_pose().x,ent1->get_pose().y);
         robot_->get_right().CalculateReading(ent1->get_pose().x,ent1->get_pose().y); 
+        robot_->get_left().HandleReading();
+        robot_->get_right().HandleReading();
     }
     /* Determine if that mobile entity is colliding with any other entity.
     * Adjust the position accordingly so they don't overlap.
