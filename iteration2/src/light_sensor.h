@@ -13,21 +13,20 @@
 #include "src/entity_type.h"
 #include "src/arena_entity.h"
 #include "src/motion_handler.h"
+#include "src/sensor.h"
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
 NAMESPACE_BEGIN(csci3081);
-
-class LightSensor: public Sensor{
+class LightSensor : public Sensor {
  public:
- LightSensor();
- ~LightSensor();
- void GetMotionHandler();
- void AcceptCommand(Communication cmd, int reading);
+ LightSensor(MotionHandler handler, int xpos, int ypos):
+ Sensor(handler, xpos, ypos){}
+ ~LightSensor(){}
+ void HandleReading() override; 
  private:
- MotionHandler motion_handler_;
- }
-;
+};
+
 NAMESPACE_END(csci3081);
 
 #endif  // SRC_SENSOR_TOUCH_H_

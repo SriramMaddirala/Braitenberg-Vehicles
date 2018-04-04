@@ -22,8 +22,10 @@ Robot::Robot() :
     motion_handler_(this),
     motion_behavior_(this),
     lives_(9),
-    basehit_(0)
-    {
+    basehit_(0),
+    left(motion_handler_, get_pose().x, get_pose().y),    
+    right(motion_handler_, get_pose().x, get_pose().y)   
+  {
   set_type(kRobot);
   set_color(ROBOT_COLOR);
   set_pose(ROBOT_INIT_POS);

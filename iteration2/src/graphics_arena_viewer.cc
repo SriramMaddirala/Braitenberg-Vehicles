@@ -105,7 +105,7 @@ void GraphicsArenaViewer::OnSpecialKeyDown(int key,
 /*******************************************************************************
  * Drawing of Entities in Arena
  ******************************************************************************/
-void GraphicsArenaViewer::DrawRobotSensor(NVGcontext *ctx, const Robot *const robot){
+/*void GraphicsArenaViewer::DrawRobotSensor(NVGcontext *ctx, const Robot *const robot){
   double xpos = static_cast<float>(robot->get_pose().x);
   double ypos = static_cast<float>(robot->get_pose().y);
   double angle = (robot->get_pose().theta)*M_PI/180;  
@@ -152,6 +152,7 @@ void GraphicsArenaViewer::DrawRobotSensor(NVGcontext *ctx, const Robot *const ro
   nvgRestore(ctx);
 
 }
+*/
 void GraphicsArenaViewer::DrawRobot(NVGcontext *ctx,
                                      const Robot *const robot) {
   // translate and rotate all graphics calls that follow so that they are
@@ -239,8 +240,8 @@ void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
   } /* for(i..) */
  // std::vector<Robot *> robots = arena_->robot();
   //for (auto &robot : robots) {
-    DrawRobot(ctx, arena_->robot());
-    DrawRobotSensor(ctx, arena_->robot());
+  DrawRobot(ctx, arena_->robot());
+  //DrawRobotSensor(ctx, arena_->robot());
   //}
 }
 void GraphicsArenaViewer::AcceptCommunication(Communication com) {

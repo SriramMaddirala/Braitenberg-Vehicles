@@ -7,6 +7,7 @@
 #include <utility>
 #include <vector>
 #include <iostream>
+#include <cmath>
 #include "src/communication.h"
 #include "src/common.h"
 #include "src/pose.h"
@@ -18,16 +19,36 @@
  ******************************************************************************/
 NAMESPACE_BEGIN(csci3081);
 
-class Sensor: public ArenaImmobileEntity {
+class Sensor {
  public:
- Sensor();
- ~Sensor();
- void GetMotionHandler();
- void AcceptCommand(Communication cmd, int reading);
+ Sensor(MotionHandler handler, int xpos, int ypos):
+ motion_handler_(handler),
+ xpose(xpos),
+ ypose(ypos),
+ direction(2),
+ reading(0){}
+ virtual ~Sensor();
+ MotionHandler GetMotionHandler(){return motion_handler_;}
+ virtual void HandleReading();
+ void CalculateReading(int x, int y) { 
+        int distance = pow((((x-xpose) * (x-xpose)) + ((y-ypose) * (y-ypose))),.5) -5;
+        reading = 1200/(pow(1.08,distance)) + reading;
+        if (reading > 1000){
+            reading = 1000;
+	}
+}
+ void setDirection(int whichsen){
+  direction = whichsen;
+  }
+ int getDirection(){return direction;}
+ int getReading(){return reading;}
  private:
   MotionHandler motion_handler_;
-}
-;
+  int xpose;
+  int ypose;
+  int direction;
+  int reading;
+};
 NAMESPACE_END(csci3081);
 
 #endif  // SRC_SENSOR_TOUCH_H_
