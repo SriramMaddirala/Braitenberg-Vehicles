@@ -116,6 +116,8 @@ class Robot : public ArenaMobileEntity {
   int lives_;
   int basehit_;
   int mercy_{0};
+  LightSensor left;
+  LightSensor right;
 };
 
 NAMESPACE_END(csci3081);
