@@ -106,8 +106,8 @@ class Robot : public ArenaMobileEntity {
   MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_;}
   void set_mercy(int time) {mercy_ = time;}
   int get_mercy() {return mercy_;}
-  LightSensor get_left(){return left;}
-  LightSensor get_right(){return right;}
+  LightSensor& get_left(){return left;}
+  LightSensor& get_right(){return right;}
   private:
   // Manages pose and wheel velocities that change with time and collisions.
   MotionHandlerRobot motion_handler_;

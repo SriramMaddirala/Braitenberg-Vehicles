@@ -23,22 +23,24 @@ Robot::Robot() :
     motion_behavior_(this),
     lives_(9),
     basehit_(0),
-    left(motion_handler_, get_pose().x, get_pose().y),    
-    right(motion_handler_, get_pose().x, get_pose().y)   
+    left(motion_handler_, get_pose().x+3, get_pose().y-3),    
+    right(motion_handler_, get_pose().x-3, get_pose().y+3)   
   {
   set_type(kRobot);
   set_color(ROBOT_COLOR);
   set_pose(ROBOT_INIT_POS);
   set_radius(ROBOT_RADIUS);
+  left.setDirection(0);
+  right.setDirection(1);
 }
 /*******************************************************************************
  * Member Functions
  ******************************************************************************/
 void Robot::TimestepUpdate(unsigned int dt) {
   // Update heading as indicated by touch sensor
+  motion_handler_.set_velocity(motion_handler_.get_velocity().left -1 -(right.getReading()/100),motion_handler_.get_velocity().left - 1 -(left.getReading()/100));  
   motion_handler_.UpdateVelocity();
-
-  // Use velocity and position to update position
+   // Use velocity and position to update position
   motion_behavior_.UpdatePose(dt, motion_handler_.get_velocity());
 
   // Reset Sensor for next cycle

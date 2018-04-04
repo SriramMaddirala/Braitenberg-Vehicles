@@ -110,14 +110,14 @@ void Arena::UpdateEntitiesTimestep() {
 	robot_->get_left().CalculateReading(ent1->get_pose().x,ent1->get_pose().y);
         robot_->get_right().CalculateReading(ent1->get_pose().x,ent1->get_pose().y); 
         robot_->get_left().HandleReading();
-        robot_->get_right().HandleReading();
-    }
+        robot_->get_right().HandleReading(); 
+   }
     /* Determine if that mobile entity is colliding with any other entity.
     * Adjust the position accordingly so they don't overlap.
     */
     for (auto &ent2 : entities_) {
-      if (ent2 == ent1) { continue; }
-      if (IsColliding(ent1, ent2)) {
+      if (ent2 == ent1) { continue; } 
+     if (IsColliding(ent1, ent2)) {
         AdjustEntityOverlap(ent1, ent2);
         robot_->HandleCollision(ent2->get_type(), ent2);
       }
