@@ -23,7 +23,6 @@ class LightSensor : public Sensor {
  LightSensor(MotionHandler handler, int xpos, int ypos):
  Sensor(handler, xpos, ypos){}
  ~LightSensor(){}
- void HandleReading() override; 
  private:
 };
 
