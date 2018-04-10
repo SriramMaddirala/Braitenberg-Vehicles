@@ -38,7 +38,8 @@ class Sensor {
             reading = 1000;
 	}
 }
- void setDirection(int whichsen){
+void ResetReading(){reading=0;}
+void setDirection(int whichsen){
   direction = whichsen;
   }
  int getDirection(){return direction;}

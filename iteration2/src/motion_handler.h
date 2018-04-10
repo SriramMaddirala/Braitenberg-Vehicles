@@ -135,7 +135,7 @@ class MotionHandler {
   double max_speed_{10};
   double max_angle_{360};
   double speed_delta_{1};
-  double angle_delta_{1};
+  double angle_delta_{.4};
   WheelVelocity velocity_;
 
  protected:

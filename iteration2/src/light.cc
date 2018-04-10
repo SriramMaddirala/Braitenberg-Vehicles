@@ -30,21 +30,22 @@ Light::Light():
 void Light::TimestepUpdate(unsigned int dt) {
   // Update heading as indicated by touch sensor
   if (get_state() == 0) {
-    motion_handler_.UpdateVelocity();
   } else if (get_state() == 1) {
+    set_heading(get_pose().theta+180);
     set_state(2);
-  } else if (get_state() <= 6) {
-    motion_handler_.set_velocity(-3,-3);
+  } else if ((get_state() > 4)&&(get_state()%2==0)) {
+    set_heading(get_pose().theta + 90);
     set_state(get_state() + 1);
   } 
-  else if(get_state()<=10)
-  {
-    motion_handler_.TurnLeft();
-   set_state(get_state() + 1);
+ else if (get_state() <= 4) {
+    set_state(get_state() + 1);
   }
-  else {
-    motion_handler_.UpdateVelocity();
-    set_state(0);
+  else if ((get_state() > 4)&&(get_state()%2!=0)) { 
+    set_heading(get_pose().theta-90);
+    set_state(get_state()+1);
+  }
+  if(get_state()==16){
+   set_state(0);
   }
   // Use velocity and position to update position
   motion_behavior_.UpdatePose(dt, motion_handler_.get_velocity());
@@ -55,8 +56,7 @@ void Light::TimestepUpdate(unsigned int dt) {
 
 void Light::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
-  motion_handler_.set_velocity(0,0);
-//  motion_handler_.UpdateVelocity();
+  motion_handler_.UpdateVelocity();
   set_state(1);
 }
 
@@ -66,6 +66,7 @@ void Light::Reset() {
   motion_handler_.set_max_speed(ROBOT_MAX_SPEED);
   motion_handler_.set_max_angle(ROBOT_MAX_ANGLE);
   sensor_touch_->Reset();
+  set_state(0);
 } /* Reset() */
 
 NAMESPACE_END(csci3081);

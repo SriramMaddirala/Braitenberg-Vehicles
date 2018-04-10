@@ -31,6 +31,8 @@ Base::Base() : ArenaImmobileEntity(), captured_(false) {
 void Base::Reset() {
   set_pose(Pose(static_cast<double>((30 + (random() % 19) * 50)),
         static_cast<double>((30 + (random() % 14) * 50))));
+  captured_=false;
+  set_color(BASE_COLOR);
 } /* Reset */
 
 NAMESPACE_END(csci3081);

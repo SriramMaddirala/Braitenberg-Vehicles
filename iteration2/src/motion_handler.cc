@@ -62,12 +62,6 @@ void MotionHandler::DecreaseSpeed() {
   }
 }
 void MotionHandler::UpdateVelocity() {
-  if (entity_->get_touch_sensor()->get_output()) {
-    set_velocity(-get_velocity().left, -get_velocity().right);
-    return;
-  } else {
-  set_velocity(get_velocity().left, get_velocity().left);
-  }
 }
 
 
