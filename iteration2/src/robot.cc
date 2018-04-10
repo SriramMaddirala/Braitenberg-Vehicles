@@ -36,23 +36,19 @@ Robot::Robot() :
  * Member Functions
  ******************************************************************************/
 void Robot::TimestepUpdate(unsigned int dt) {
-  motion_handler_.set_velocity(motion_handler_.get_velocity().left-(right.getReading()/100),motion_handler_.get_velocity().right-(left.getReading()/100));
+  motion_handler_.set_velocity(motion_handler_.get_velocity().left-(right.getReading()/50),motion_handler_.get_velocity().right-(left.getReading()/50));
   if (get_state() == 0) {
   } else if (get_state() == 1) {
     set_heading(get_pose().theta+180);
     set_state(2);
-  } else if ((get_state() > 4)&&(get_state()%2==0)) {
+  } else if (get_state() > 4) {
     set_heading(get_pose().theta + 90);
     set_state(get_state() + 1);
   }
  else if (get_state() <= 4) {
     set_state(get_state() + 1);
   }
-  else if ((get_state() > 4)&&(get_state()%2!=0)) {
-    set_heading(get_pose().theta-90);
-    set_state(get_state()+1);
-  }
-  if(get_state()==8){
+ if(get_state()==8){
    set_state(0);
   }
  // Use velocity and position to update position
