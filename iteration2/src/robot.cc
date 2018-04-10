@@ -83,7 +83,7 @@ void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   object -> set_color(FOOD_HIT_COLOR);
   food -> set_captured(true);
   inc_foodhit();
-  } else if ((object_type == kLight) || (object_type == kRightWall) || (object_type == kLeftWall) || (object_type == kTopWall) || (object_type == kBottomWall)) {
+  } else if ((object_type == kRightWall) || (object_type == kLeftWall) || (object_type == kTopWall) || (object_type == kBottomWall)) {
    set_state(1);
   }
 }
