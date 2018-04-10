@@ -175,7 +175,7 @@ class Arena {
   std::vector<class ArenaEntity *> entities_;
 
   // A subset of the entities -- only those that can move (only Robot for now).
-  std::vector<class ArenaMobileEntity *> mobile_entities_;
+  std::vector<class Robot *> robot_entities_;
 
   // win/lose/playing state
   int game_status_;

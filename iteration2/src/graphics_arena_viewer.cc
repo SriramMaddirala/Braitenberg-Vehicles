@@ -43,7 +43,8 @@ GraphicsArenaViewer::GraphicsArenaViewer(
     gui->addButton(
       "Play",
       std::bind(&GraphicsArenaViewer::OnPlayingBtnPressed, this));
-  screen()->performLayout();
+ screen()->setSize({X_DIM, Y_DIM}); 
+ screen()->performLayout();
   new_button_ =
     gui->addButton(
       "New Game",

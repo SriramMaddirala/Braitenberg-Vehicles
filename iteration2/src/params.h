@@ -28,7 +28,7 @@
 
 // arena
 #define BASE_NUMBER 3
-#define N_LIGHT 5
+#define N_LIGHT 4
 #define MAX_LIGHT 8
 #define ARENA_X_DIM X_DIM
 #define ARENA_Y_DIM Y_DIM

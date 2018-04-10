@@ -77,7 +77,7 @@ class ArenaEntity {
    */
   virtual std::string get_name() const = 0;
 
-
+    virtual void HandleCollision(__unused EntityType object_type, __unused ArenaEntity * object = NULL){}
   const Pose &get_pose() const { return pose_; }
   void set_pose(const Pose &pose) { pose_ = pose; }
 

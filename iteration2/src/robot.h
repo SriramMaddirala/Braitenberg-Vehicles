@@ -69,7 +69,7 @@ class Robot : public ArenaMobileEntity {
   /**
    * @brief Handles the collision by setting the sensor to activated.
    */
-  void HandleCollision(EntityType object_type, ArenaEntity * object = NULL);
+  void HandleCollision(EntityType object_type, ArenaEntity * object = NULL) override;
 
   /**
    * @brief Get the name of the Robot for visualization and for debugging.

@@ -49,7 +49,8 @@ void Light::TimestepUpdate(unsigned int dt) {
 
 void Light::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
-  motion_handler_.UpdateVelocity();
+  motion_handler_.set_velocity(0,0);
+//  motion_handler_.UpdateVelocity();
   set_state(1);
 }
 

@@ -38,7 +38,7 @@ Robot::Robot() :
  ******************************************************************************/
 void Robot::TimestepUpdate(unsigned int dt) {
   // Update heading as indicated by touch sensor
-  motion_handler_.set_velocity(motion_handler_.get_velocity().left +1 -(right.getReading()/100),motion_handler_.get_velocity().left + 1 -(left.getReading()/100));  
+  motion_handler_.set_velocity(motion_handler_.get_velocity().left -(right.getReading()/1000),motion_handler_.get_velocity().left -(left.getReading()/1000));  
   motion_handler_.UpdateVelocity();
    // Use velocity and position to update position
   motion_behavior_.UpdatePose(dt, motion_handler_.get_velocity());

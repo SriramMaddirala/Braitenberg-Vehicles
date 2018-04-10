@@ -26,7 +26,7 @@ Arena::Arena(const struct arena_params *const params)
       y_dim_(params->y_dim),
       factory_(new EntityFactory),
       entities_(),
-      mobile_entities_(),
+      robot_entities_(),
       game_status_(3) {
   AddRobot();
   AddEntity(kBase, 3);
@@ -45,7 +45,7 @@ Arena::~Arena() {
 void Arena::AddRobot() {
   robot_ = dynamic_cast<Robot *>(factory_->CreateEntity(kRobot));
   entities_.push_back(robot_);
-  mobile_entities_.push_back(robot_);
+  robot_entities_.push_back(robot_);
 }
 
 void Arena::AddEntity(EntityType type, int quantity) {
@@ -97,34 +97,42 @@ void Arena::UpdateEntitiesTimestep() {
      robot_->set_color(BASE_HIT_COLOR);
      return;
    }
-   /* Determine if any mobile entity is colliding with wall.
+   /* Determine if any robot entity is colliding with wall.
    * Adjust the position accordingly so it doesn't overlap.
    */
-  for (auto &ent1 : mobile_entities_) {
-    EntityType wall = GetCollisionWall(ent1);
+  for (auto &ent : robot_entities_) {
+    EntityType wall = GetCollisionWall(ent);
     if (kUndefined != wall) {
-      AdjustWallOverlap(ent1, wall);
-      robot_->HandleCollision(wall);
+      AdjustWallOverlap(ent, wall);
+      ent->HandleCollision(wall);
     }
-    if(kLight==ent1->get_type()){
-	robot_->get_left().CalculateReading(ent1->get_pose().x,ent1->get_pose().y);
-        robot_->get_right().CalculateReading(ent1->get_pose().x,ent1->get_pose().y); 
-        robot_->get_left().HandleReading();
-        robot_->get_right().HandleReading(); 
    }
     /* Determine if that mobile entity is colliding with any other entity.
     * Adjust the position accordingly so they don't overlap.
     */
-    for (auto &ent2 : entities_) {
-      if (ent2 == ent1) { continue; } 
-     if (IsColliding(ent1, ent2)) {
-        AdjustEntityOverlap(ent1, ent2);
-        robot_->HandleCollision(ent2->get_type(), ent2);
-      }
-    }
-  }
+   for(auto &ent1: robot_entities_){ 
+     for (auto &ent2 : entities_) {
+       if(ent2->get_type()==kLight){
+           EntityType walll = GetCollisionWall(dynamic_cast<ArenaMobileEntity *>(ent2));
+           if (kUndefined != walll) {
+             AdjustWallOverlap(dynamic_cast<ArenaMobileEntity *>(ent2), walll);
+             ent2->HandleCollision(walll);
+           }
+        }
+        if (ent2 == ent1) { continue; } 
+     	if (IsColliding(ent1, ent2)) {
+        	AdjustEntityOverlap(ent1, ent2);
+        	ent1->HandleCollision(ent2->get_type(), ent2);
+      	}
+     	if(kLight==ent2->get_type()){
+        	ent1->get_left().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
+        	ent1->get_right().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
+        	ent1->get_left().HandleReading();
+        	ent1->get_right().HandleReading();
+        }
+   }
 }  // UpdateEntitiesTimestep()
-
+}
 
 // Determine if the entity is colliding with a wall.
 // Always returns an entity type. If not collision, returns kUndefined.
