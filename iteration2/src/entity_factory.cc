@@ -67,7 +67,7 @@ Light* EntityFactory::CreateLight() {
   light->set_color(LIGHT_COLOR);
   light->set_pose(SetPoseRandomly());
   light->set_radius((rand() % 20 + 20));
-  light->get_motion_handler().set_velocity(2,2);
+  light->get_motion_handler().set_velocity(4,4);
   ++entity_count_;
   ++light_count_;
   light->set_id(light_count_);

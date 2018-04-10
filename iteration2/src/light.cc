@@ -34,9 +34,15 @@ void Light::TimestepUpdate(unsigned int dt) {
   } else if (get_state() == 1) {
     set_state(2);
   } else if (get_state() <= 6) {
-    motion_handler_.TurnLeft();
+    motion_handler_.set_velocity(-3,-3);
     set_state(get_state() + 1);
-  } else {
+  } 
+  else if(get_state()<=10)
+  {
+    motion_handler_.TurnLeft();
+   set_state(get_state() + 1);
+  }
+  else {
     motion_handler_.UpdateVelocity();
     set_state(0);
   }
