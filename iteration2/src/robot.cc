@@ -22,7 +22,7 @@ Robot::Robot() :
     motion_handler_(this),
     motion_behavior_(this),
     lives_(9),
-    basehit_(0),
+    foodhit_(0),
     left(get_motion_handler(), get_pose().x-3, get_pose().y),    
     right(get_motion_handler(), get_pose().x+3, get_pose().y)
    {
@@ -71,18 +71,18 @@ void Robot::Reset() {
   motion_handler_.set_velocity(0,0);
   sensor_touch_->Reset();
   set_lives(9);
-  basehit_=0;
+  foodhit_=0;
   
 } /* Reset() */
 
 void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
   motion_handler_.UpdateVelocity();
-  if (object_type == kBase) {
-  Base* base = dynamic_cast<Base*>(object);
-  object -> set_color(BASE_HIT_COLOR);
-  base -> set_captured(true);
-  inc_basehit();
+  if (object_type == kFood) {
+  Food* food = dynamic_cast<Food*>(object);
+  object -> set_color(FOOD_HIT_COLOR);
+  food -> set_captured(true);
+  inc_foodhit();
   } else if ((object_type == kLight) || (object_type == kRightWall) || (object_type == kLeftWall) || (object_type == kTopWall) || (object_type == kBottomWall)) {
    set_state(1);
   }

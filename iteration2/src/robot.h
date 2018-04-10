@@ -11,7 +11,7 @@
  * Includes
  ******************************************************************************/
 #include <string>
-#include "src/base.h"
+#include "src/food.h"
 #include "src/arena_mobile_entity.h"
 #include "src/common.h"
 #include "src/motion_handler_robot.h"
@@ -35,7 +35,7 @@ class MotionBehaviorDifferential;
  * These classes interact to maintain the pose (position and heading) of the
  * robot. At each time step, the wheel velocities are used to calculate the
  * next pose of the robot. The handler manages the pose and user requests. The
- * behavior calculates the new pose based on wheel velocities.
+ * behavior calculates the new pose foodd on wheel velocities.
  *
  * Robots can be controlled through keypress, which modify wheel velocities.
  *
@@ -98,10 +98,10 @@ class Robot : public ArenaMobileEntity {
 
   int get_lives() const { return lives_;}
 
-  int get_basehit() {return basehit_;}
+  int get_foodhit() {return foodhit_;}
 
   void set_lives(int l) { lives_ = l;}
-  void inc_basehit() {basehit_ = basehit_+1;}
+  void inc_foodhit() {foodhit_ = foodhit_+1;}
   MotionHandlerRobot get_motion_handler() { return motion_handler_;}
   MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_;}
   LightSensor& get_left(){return left;}
@@ -111,12 +111,12 @@ class Robot : public ArenaMobileEntity {
   private:
   // Manages pose and wheel velocities that change with time and collisions.
   MotionHandlerRobot motion_handler_;
-  // Calculates changes in pose based on elapsed time and wheel velocities.
+  // Calculates changes in pose foodd on elapsed time and wheel velocities.
   MotionBehaviorDifferential motion_behavior_;
   // Lives are decremented when the robot collides with anything.
   // When all the lives are gone, the game is lost.
   int lives_;
-  int basehit_;
+  int foodhit_;
   LightSensor left;
   LightSensor right;
   int state_{0};
