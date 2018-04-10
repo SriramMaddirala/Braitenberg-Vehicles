@@ -57,6 +57,9 @@ void Light::TimestepUpdate(unsigned int dt) {
 void Light::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
   motion_handler_.UpdateVelocity();
+  if((object_type==kFood)||(object_type==kRobot)){
+    return;
+  }
   set_state(1);
 }
 
