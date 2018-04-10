@@ -111,6 +111,8 @@ void Arena::UpdateEntitiesTimestep() {
     * Adjust the position accordingly so they don't overlap.
     */
    for(auto &ent1: robot_entities_){ 
+     ent1->get_left().ResetReading();
+     ent1->get_right().ResetReading();
      for (auto &ent2 : entities_) {
        if(ent2->get_type()==kLight){
            EntityType walll = GetCollisionWall(dynamic_cast<ArenaMobileEntity *>(ent2));

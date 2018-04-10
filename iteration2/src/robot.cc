@@ -38,7 +38,6 @@ Robot::Robot() :
  ******************************************************************************/
 void Robot::TimestepUpdate(unsigned int dt) {
   // Update heading as indicated by touch sensor
-  motion_handler_.set_velocity(motion_handler_.get_velocity().left + (right.getReading()/1000),motion_handler_.get_velocity().right +(left.getReading()/1000));  
   motion_handler_.UpdateVelocity();
    // Use velocity and position to update position
   motion_behavior_.UpdatePose(dt, motion_handler_.get_velocity());
@@ -59,7 +58,12 @@ void Robot::Reset() {
         static_cast<double>((30 + (random() % 14) * 50))));
   motion_handler_.set_max_speed(ROBOT_MAX_SPEED);
   motion_handler_.set_max_angle(ROBOT_MAX_ANGLE);
+  motion_handler_.set_velocity(0,0);
   sensor_touch_->Reset();
+  set_lives(9);
+  set_mercy(0);
+  basehit_=0;
+  
 } /* Reset() */
 
 void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
