@@ -23,34 +23,44 @@ Robot::Robot() :
     motion_behavior_(this),
     lives_(9),
     basehit_(0),
-    left(motion_handler_, get_pose().x-3, get_pose().y),    
-    right(motion_handler_, get_pose().x+3, get_pose().y)   
-  {
+    left(get_motion_handler(), get_pose().x-3, get_pose().y),    
+    right(get_motion_handler(), get_pose().x+3, get_pose().y)
+   {
   set_type(kRobot);
   set_color(ROBOT_COLOR);
   set_pose(ROBOT_INIT_POS);
   set_radius(ROBOT_RADIUS);
-  left.setDirection(0);
-  right.setDirection(1);
-}
+  }
+
 /*******************************************************************************
  * Member Functions
  ******************************************************************************/
 void Robot::TimestepUpdate(unsigned int dt) {
-  // Update heading as indicated by touch sensor
-  motion_handler_.UpdateVelocity();
-   // Use velocity and position to update position
+  motion_handler_.set_velocity(motion_handler_.get_velocity().left-(right.getReading()/100),motion_handler_.get_velocity().right-(left.getReading()/100));
+  if (get_state() == 0) {
+  } else if (get_state() == 1) {
+    set_heading(get_pose().theta+180);
+    set_state(2);
+  } else if ((get_state() > 4)&&(get_state()%2==0)) {
+    set_heading(get_pose().theta + 90);
+    set_state(get_state() + 1);
+  }
+ else if (get_state() <= 4) {
+    set_state(get_state() + 1);
+  }
+  else if ((get_state() > 4)&&(get_state()%2!=0)) {
+    set_heading(get_pose().theta-90);
+    set_state(get_state()+1);
+  }
+  if(get_state()==8){
+   set_state(0);
+  }
+ // Use velocity and position to update position
   motion_behavior_.UpdatePose(dt, motion_handler_.get_velocity());
 
   // Reset Sensor for next cycle
-  sensor_touch_->Reset();
-  if (get_mercy() > 0) {
-    set_mercy(get_mercy()-1);
-    set_color(ROBOT_MERCY_COLOR);
-  }
-  if (get_mercy() == 0) {
-  set_color(ROBOT_COLOR);
-  }
+  left.ResetReading();
+  right.ResetReading();  
 } /* TimestepUpdate() */
 
 void Robot::Reset() {
@@ -61,7 +71,6 @@ void Robot::Reset() {
   motion_handler_.set_velocity(0,0);
   sensor_touch_->Reset();
   set_lives(9);
-  set_mercy(0);
   basehit_=0;
   
 } /* Reset() */
@@ -75,11 +84,7 @@ void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   base -> set_captured(true);
   inc_basehit();
   } else if ((object_type == kLight) || (object_type == kRightWall) || (object_type == kLeftWall) || (object_type == kTopWall) || (object_type == kBottomWall)) {
-  if (get_mercy() == 0) {
-  set_lives(get_lives()-1);
-  }
-  set_mercy(2);
-  set_color(ROBOT_MERCY_COLOR);
+   set_state(1);
   }
 }
 void Robot::IncreaseSpeed() {

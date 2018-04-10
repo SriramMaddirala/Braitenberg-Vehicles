@@ -25,11 +25,9 @@ class Sensor {
  motion_handler_(handler),
  xpose(xpos),
  ypose(ypos),
- direction(2),
  reading(0){}
  virtual ~Sensor();
  MotionHandler GetMotionHandler(){return motion_handler_;}
- virtual void HandleReading();
  void CalculateReading(int x, int y) { 
         int distance = pow((((xpose-x) * (xpose-x)) + ((ypose-y) * (ypose-y))),.5);        
         int temp = 1200/(pow(1.08,distance));
@@ -39,16 +37,11 @@ class Sensor {
 	}
 }
 void ResetReading(){reading=0;}
-void setDirection(int whichsen){
-  direction = whichsen;
-  }
- int getDirection(){return direction;}
- int getReading(){return reading;}
+int getReading(){return reading;}
  private:
   MotionHandler motion_handler_;
   int xpose;
   int ypose;
-  int direction;
   int reading;
 };
 NAMESPACE_END(csci3081);

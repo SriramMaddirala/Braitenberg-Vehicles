@@ -177,16 +177,14 @@ void GraphicsArenaViewer::DrawRobot(NVGcontext *ctx,
 
   // robot id text label
 
-/*
+
   nvgSave(ctx);
   nvgRotate(ctx, static_cast<float>(M_PI / 2.0));
   nvgFillColor(ctx, nvgRGBA(0, 0, 0, 255));
   std::string str;
   str = robot->get_name();
-  str += " ";
-  str += std::to_string(robot->get_lives());
-  nvgText(ctx, 0.0, 10.0, str.c_str(), nullptr);
-  nvgRestore(ctx);*/
+  nvgText(ctx, 0.0, 0.5, str.c_str(), nullptr);
+  nvgRestore(ctx); 
   nvgRestore(ctx);
 }
 void GraphicsArenaViewer::DrawArena(NVGcontext *ctx) {
@@ -213,11 +211,11 @@ void GraphicsArenaViewer::DrawEntity(NVGcontext *ctx,
   nvgStroke(ctx);
 
   // obstacle id text label
-//  nvgFillColor(ctx, nvgRGBA(0, 0, 0, 255));
- // nvgText(ctx,
-   //       static_cast<float>(entity->get_pose().x),
-     //     static_cast<float>(entity->get_pose().y),
-       //   entity->get_name().c_str(), nullptr);
+  nvgFillColor(ctx, nvgRGBA(0, 0, 0, 255));
+  nvgText(ctx,
+          static_cast<float>(entity->get_pose().x),
+          static_cast<float>(entity->get_pose().y),
+          entity->get_name().c_str(), nullptr);
 }
 void GraphicsArenaViewer::DrawText(NVGcontext *ctx) {
   switch (status_) {
@@ -238,14 +236,15 @@ void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
   DrawArena(ctx);
   DrawText(ctx);
   std::vector<ArenaEntity *> entities = arena_->get_entities();
+  std::vector<Robot *> robot_entities = arena_->get_robotentities();
   for (auto &entity : entities) {
-    DrawEntity(ctx, entity);
+     if(entity->get_type()!=kRobot){
+     DrawEntity(ctx, entity);
+     }
   } /* for(i..) */
- // std::vector<Robot *> robots = arena_->robot();
-  //for (auto &robot : robots) {
-  DrawRobot(ctx, arena_->robot());
-  //DrawRobotSensor(ctx, arena_->robot());
-  //}
+ for(auto &ent1: robot_entities){
+     DrawRobot(ctx, ent1);
+  }
 }
 void GraphicsArenaViewer::AcceptCommunication(Communication com) {
   status_ = com;

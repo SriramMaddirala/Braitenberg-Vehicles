@@ -52,7 +52,7 @@
 #define ROBOT_ANGLE_DELTA 1
 #define ROBOT_SPEED_DELTA 1
 #define ROBOT_COLLISION_DELTA 1
-#define ROBOT_RADIUS 10
+#define ROBOT_RADIUS 15
 #define ROBOT_INIT_POS \
   { 500, 500 , 0}
 #define ROBOT_COLOR \

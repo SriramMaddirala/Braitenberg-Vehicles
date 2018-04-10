@@ -154,6 +154,8 @@ class Arena {
 
   std::vector<class ArenaEntity *> get_entities() const { return entities_; }
 
+  std::vector<class Robot *> get_robotentities() const { return robot_entities_; }
+
   double get_x_dim() { return x_dim_; }
   double get_y_dim() { return y_dim_; }
 
