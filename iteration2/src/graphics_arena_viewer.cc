@@ -176,6 +176,8 @@ void GraphicsArenaViewer::DrawRobot(NVGcontext *ctx,
   nvgStroke(ctx);
 
   // robot id text label
+
+/*
   nvgSave(ctx);
   nvgRotate(ctx, static_cast<float>(M_PI / 2.0));
   nvgFillColor(ctx, nvgRGBA(0, 0, 0, 255));
@@ -184,7 +186,7 @@ void GraphicsArenaViewer::DrawRobot(NVGcontext *ctx,
   str += " ";
   str += std::to_string(robot->get_lives());
   nvgText(ctx, 0.0, 10.0, str.c_str(), nullptr);
-  nvgRestore(ctx);
+  nvgRestore(ctx);*/
   nvgRestore(ctx);
 }
 void GraphicsArenaViewer::DrawArena(NVGcontext *ctx) {
@@ -211,11 +213,11 @@ void GraphicsArenaViewer::DrawEntity(NVGcontext *ctx,
   nvgStroke(ctx);
 
   // obstacle id text label
-  nvgFillColor(ctx, nvgRGBA(0, 0, 0, 255));
-  nvgText(ctx,
-          static_cast<float>(entity->get_pose().x),
-          static_cast<float>(entity->get_pose().y),
-          entity->get_name().c_str(), nullptr);
+//  nvgFillColor(ctx, nvgRGBA(0, 0, 0, 255));
+ // nvgText(ctx,
+   //       static_cast<float>(entity->get_pose().x),
+     //     static_cast<float>(entity->get_pose().y),
+       //   entity->get_name().c_str(), nullptr);
 }
 void GraphicsArenaViewer::DrawText(NVGcontext *ctx) {
   switch (status_) {

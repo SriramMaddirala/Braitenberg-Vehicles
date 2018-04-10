@@ -23,8 +23,8 @@ Robot::Robot() :
     motion_behavior_(this),
     lives_(9),
     basehit_(0),
-    left(motion_handler_, get_pose().x+3, get_pose().y-3),    
-    right(motion_handler_, get_pose().x-3, get_pose().y+3)   
+    left(motion_handler_, get_pose().x-3, get_pose().y),    
+    right(motion_handler_, get_pose().x+3, get_pose().y)   
   {
   set_type(kRobot);
   set_color(ROBOT_COLOR);
@@ -38,7 +38,7 @@ Robot::Robot() :
  ******************************************************************************/
 void Robot::TimestepUpdate(unsigned int dt) {
   // Update heading as indicated by touch sensor
-  motion_handler_.set_velocity(motion_handler_.get_velocity().left -(right.getReading()/1000),motion_handler_.get_velocity().left -(left.getReading()/1000));  
+  motion_handler_.set_velocity(motion_handler_.get_velocity().left + (right.getReading()/1000),motion_handler_.get_velocity().right +(left.getReading()/1000));  
   motion_handler_.UpdateVelocity();
    // Use velocity and position to update position
   motion_behavior_.UpdatePose(dt, motion_handler_.get_velocity());
