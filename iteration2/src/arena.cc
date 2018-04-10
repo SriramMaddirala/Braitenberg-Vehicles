@@ -29,7 +29,7 @@ Arena::Arena(const struct arena_params *const params)
       robot_entities_(),
       game_status_(3) {
   AddRobot();
-  AddEntity(kBase, 3);
+  AddEntity(kFood, 3);
   AddEntity(kLight, params->n_light);
 }
 
@@ -92,9 +92,9 @@ void Arena::UpdateEntitiesTimestep() {
      robot_->set_color(LIGHT_COLOR);
      return;
    }
-   if ((robot_->get_basehit()) == BASE_NUMBER) {
+   if ((robot_->get_foodhit()) == FOOD_NUMBER) {
      set_game_status(WON);
-     robot_->set_color(BASE_HIT_COLOR);
+     robot_->set_color(FOOD_HIT_COLOR);
      return;
    }
    /* Determine if any robot entity is colliding with wall.
@@ -187,7 +187,7 @@ bool Arena::IsColliding(
 */
 /* @TODO: Add functionality to Pose to determine the distance distance_between two instances (e.g. overload operator -)
 */
-/* @BUG: The robot will pass through the home base on occasion. The problem
+/* @BUG: The robot will pass through the home food on occasion. The problem
  * is likely due to the adjustment being in the wrong direction. This could
  * be because the cos/sin generate the wrong sign of the distance_to_move
  * when the collision is in a specific quadrant relative to the center of the
