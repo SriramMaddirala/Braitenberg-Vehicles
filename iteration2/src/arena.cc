@@ -83,20 +83,6 @@ void Arena::UpdateEntitiesTimestep() {
   for (auto ent : entities_) {
     ent->TimestepUpdate(1);
   }
-
-  /*
-   * Check for win/loss
-   */
-   if ((robot_->get_lives()) == 0) {
-     set_game_status(LOST);      
-     robot_->set_color(LIGHT_COLOR);
-     return;
-   }
-   if ((robot_->get_foodhit()) == FOOD_NUMBER) {
-     set_game_status(WON);
-     robot_->set_color(FOOD_HIT_COLOR);
-     return;
-   }
    /* Determine if any robot entity is colliding with wall.
    * Adjust the position accordingly so it doesn't overlap.
    */
@@ -115,9 +101,11 @@ void Arena::UpdateEntitiesTimestep() {
      for (auto &ent2 : entities_) {
       if (ent2 == ent1) { continue; } 
      	if (IsColliding(ent1, ent2)) {
-        	AdjustEntityOverlap(ent1, ent2);
+        	if(ent2->get_type()==kRobot){
+                AdjustEntityOverlap(ent1, ent2);
         	ent1->HandleCollision(ent2->get_type(), ent2);
-      	}
+      	    }
+        }
      	if(kLight==ent2->get_type()){
         	ent1->get_left().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
         	ent1->get_right().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
@@ -129,8 +117,10 @@ void Arena::UpdateEntitiesTimestep() {
     if(ent3==ent4){continue;}
      if(ent3->get_type()==kLight){
         if (IsColliding(dynamic_cast<ArenaMobileEntity *>(ent3), ent4)) {
+                if(ent4->get_type()==kLight){
                 AdjustEntityOverlap(dynamic_cast<ArenaMobileEntity *>(ent3), ent4);
                 ent3->HandleCollision(ent4->get_type(), ent4);
+          }
         }
       } 
    }

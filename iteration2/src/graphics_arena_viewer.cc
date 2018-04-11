@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <math.h>
 #include "src/graphics_arena_viewer.h"
 #include "src/arena_params.h"
 #include "src/rgb_color.h"
@@ -106,54 +107,38 @@ void GraphicsArenaViewer::OnSpecialKeyDown(int key,
 /*******************************************************************************
  * Drawing of Entities in Arena
  ******************************************************************************/
-/*void GraphicsArenaViewer::DrawRobotSensor(NVGcontext *ctx, const Robot *const robot){
+void GraphicsArenaViewer::DrawRobotSensor(NVGcontext *ctx, const Robot *const robot){
   double xpos = static_cast<float>(robot->get_pose().x);
   double ypos = static_cast<float>(robot->get_pose().y);
-  double angle = (robot->get_pose().theta)*M_PI/180;  
-
-  nvgSave(ctx);
-  nvgTranslate(ctx, xpos, ypos);
-  nvgRotate(ctx, angle);
-
-  // sensor cone outline
-  nvgSave(ctx);
-  nvgRotate(ctx, 0.5 * 45);
+  double xanglel = cos(robot->get_pose().theta -40);
+  double yanglel = sin(robot->get_pose().theta -40);
+  double xangler = cos(robot->get_pose().theta +40);
+  double yangler = sin(robot->get_pose().theta +40);
   nvgBeginPath(ctx);
-  nvgMoveTo(ctx, 0.0, 0.0);
-  nvgLineTo(ctx, 5, 0.0);
-  nvgArc(ctx, 0.0, 0.0, 10, 0.0, -45, NVG_CCW);
-  nvgLineTo(ctx, 0.0, 0.0);
-  nvgStrokeColor(ctx, nvgRGBA(100, 0, 0, 100));
+  nvgCircle(ctx,
+            (xpos+(robot->get_radius()*(xanglel))),
+            (ypos+(robot->get_radius()*(yanglel))),
+            static_cast<float>(2));
+  nvgFillColor(ctx,
+               nvgRGBA(200, 10,
+                       200, 255));
+  nvgFill(ctx);
+  nvgStrokeColor(ctx, nvgRGBA(0, 0, 0, 255));
   nvgStroke(ctx);
-  nvgRestore(ctx);
-
-  // blue for right sensor cone
-  nvgSave(ctx);
-  nvgRotate(ctx, 0.5 * 45);
-  nvgBeginPath(ctx);
-  nvgMoveTo(ctx, 0.0, 0.0);
-  nvgLineTo(ctx, 5, 0.0);
-  nvgArc(ctx, 0.0, 0.0, 10, 0.0, -0.5 * 45, NVG_CCW);
-  nvgLineTo(ctx, 0.0, 0.0);
-  nvgFillColor(ctx, nvgRGBA(100, 10, 255, 150));
+ 
+ nvgBeginPath(ctx);
+  nvgCircle(ctx,
+            (xpos+(robot->get_radius()*(xangler))),
+            (ypos+(robot->get_radius()*(yangler))),
+            static_cast<float>(2));
+  nvgFillColor(ctx,
+               nvgRGBA(200, 10,
+                       200, 255));
   nvgFill(ctx);
-  nvgRestore(ctx);
-
-  // yellow for left sensor cone
-  nvgSave(ctx);
-  nvgBeginPath(ctx);
-  nvgMoveTo(ctx, 0.0, 0.0);
-  nvgLineTo(ctx, 5, 0.0);
-  nvgArc(ctx, 0.0, 0.0, 10, 0.0, -0.5 * 45, NVG_CCW);
-  nvgLineTo(ctx, 0.0, 0.0);
-  nvgFillColor(ctx, nvgRGBA(255, 255, 100, 150));
-  nvgFill(ctx);
-  nvgRestore(ctx);
-
-  nvgRestore(ctx);
-
+  nvgStrokeColor(ctx, nvgRGBA(0, 0, 0, 255));
+  nvgStroke(ctx);
 }
-*/
+
 void GraphicsArenaViewer::DrawRobot(NVGcontext *ctx,
                                      const Robot *const robot) {
   // translate and rotate all graphics calls that follow so that they are
@@ -244,6 +229,7 @@ void GraphicsArenaViewer::DrawUsingNanoVG(NVGcontext *ctx) {
   } /* for(i..) */
  for(auto &ent1: robot_entities){
      DrawRobot(ctx, ent1);
+     DrawRobotSensor(ctx,ent1);
   }
 }
 void GraphicsArenaViewer::AcceptCommunication(Communication com) {

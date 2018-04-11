@@ -1,5 +1,5 @@
-#ifndef SRC_LIGHT_SENSOR_H_
-#define SRC_LIGHT_SENSOR_H_
+#ifndef SRC_FOOD_SENSOR_H_
+#define SRC_FOOD_SENSOR_H_
 
 /*******************************************************************************
  * Includes
@@ -18,14 +18,14 @@
  * Namespaces
  ******************************************************************************/
 NAMESPACE_BEGIN(csci3081);
-class LightSensor : public Sensor {
+class FoodSensor : public Sensor {
  public:
- LightSensor(MotionHandler handler, int xpos, int ypos):
+ FoodSensor(MotionHandler handler, int xpos, int ypos):
  Sensor(handler, xpos, ypos){}
- ~LightSensor(){}
+ ~FoodSensor(){}
  private:
 };
 
 NAMESPACE_END(csci3081);
 
-#endif  // SRC_LIGHT_SENSOR_H
+#endif  // SRC_FOOD_SENSOR_H

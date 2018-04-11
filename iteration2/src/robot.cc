@@ -23,8 +23,10 @@ Robot::Robot() :
     motion_behavior_(this),
     lives_(9),
     foodhit_(0),
-    left(get_motion_handler(), get_pose().x-3, get_pose().y),    
-    right(get_motion_handler(), get_pose().x+3, get_pose().y)
+    left(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta + 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta + 40))*( M_PI /180)),    
+    right(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta - 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta - 40))*( M_PI /180)),
+   leftFood(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta + 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta + 40))*( M_PI /180)),
+    rightFood(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta - 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta - 40))*( M_PI /180))
    {
   set_type(kRobot);
   set_color(ROBOT_COLOR);
@@ -36,16 +38,24 @@ Robot::Robot() :
  * Member Functions
  ******************************************************************************/
 void Robot::TimestepUpdate(unsigned int dt) {
-  motion_handler_.set_velocity(motion_handler_.get_velocity().left-(right.getReading()/50),motion_handler_.get_velocity().right-(left.getReading()/50));
-  if (get_state() == 0) {
+if(mealtime>=30){
+   set_hungry(true);
+} 
+if(behavior==1){
+  motion_handler_.set_velocity(get_motion_handler().get_velocity().left- right.getReading(),get_motion_handler().get_velocity().right- left.getReading());
+}
+ if(behavior==0){
+  motion_handler_.set_velocity(get_motion_handler().get_velocity().left +left.getReading(),get_motion_handler().get_velocity().right + right.getReading());
+}  
+if(hungry){
+ motion_handler_.set_velocity(get_motion_handler().get_velocity().left+ rightFood.getReading(),get_motion_handler().get_velocity().right+ leftFood.getReading());
+}
+if (get_state() == 0) {
   } else if (get_state() == 1) {
     set_heading(get_pose().theta+180);
     set_state(2);
-  } else if (get_state() > 4) {
-    set_heading(get_pose().theta + 90);
-    set_state(get_state() + 1);
-  }
- else if (get_state() <= 4) {
+  } 
+ else if (get_state() <= 7) {
     set_state(get_state() + 1);
   }
  if(get_state()==8){
