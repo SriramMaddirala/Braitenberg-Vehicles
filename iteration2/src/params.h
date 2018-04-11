@@ -63,7 +63,7 @@
   {100, 200, 255}
 #define ROBOT_HEADING 270
 #define ROBOT_INIT_SPEED 0
-#define ROBOT_MAX_SPEED 10
+#define ROBOT_MAX_SPEED 100
 #define ROBOT_MAX_ANGLE 360
 
 // food

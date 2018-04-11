@@ -21,8 +21,6 @@ NAMESPACE_BEGIN(csci3081);
 Robot::Robot() :
     motion_handler_(this),
     motion_behavior_(this),
-    lives_(9),
-    foodhit_(0),
     left(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta + 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta + 40))*( M_PI /180)),    
     right(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta - 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta - 40))*( M_PI /180)),
    leftFood(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta + 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta + 40))*( M_PI /180)),
@@ -39,13 +37,18 @@ Robot::Robot() :
  ******************************************************************************/
 void Robot::TimestepUpdate(unsigned int dt) {
 if(mealtime>=30){
-   set_hungry(true);
+   set_hunger(true);
+}
+if(mealtime>=120){
+ set_starve(true);
+ left.ResetReading();
+ right.ResetReading();
 } 
 if(behavior==1){
-  motion_handler_.set_velocity(get_motion_handler().get_velocity().left- right.getReading(),get_motion_handler().get_velocity().right- left.getReading());
+  motion_handler_.set_velocity(-right.getReading()/10,-left.getReading()/10);
 }
  if(behavior==0){
-  motion_handler_.set_velocity(get_motion_handler().get_velocity().left +left.getReading(),get_motion_handler().get_velocity().right + right.getReading());
+  motion_handler_.set_velocity( left.getReading()/10,right.getReading()/10);
 }  
 if(hungry){
  motion_handler_.set_velocity(get_motion_handler().get_velocity().left+ rightFood.getReading(),get_motion_handler().get_velocity().right+ leftFood.getReading());
@@ -55,18 +58,21 @@ if (get_state() == 0) {
     set_heading(get_pose().theta+180);
     set_state(2);
   } 
- else if (get_state() <= 7) {
+ else if (get_state() <= 3) {
     set_state(get_state() + 1);
   }
- if(get_state()==8){
+ if(get_state()==4){
+   set_heading(get_pose().theta+90);
    set_state(0);
   }
+ motion_handler_.UpdateVelocity();
  // Use velocity and position to update position
   motion_behavior_.UpdatePose(dt, motion_handler_.get_velocity());
 
   // Reset Sensor for next cycle
   left.ResetReading();
-  right.ResetReading();  
+  right.ResetReading();
+  set_mealtime(get_mealtime()+1);  
 } /* TimestepUpdate() */
 
 void Robot::Reset() {
@@ -76,19 +82,18 @@ void Robot::Reset() {
   motion_handler_.set_max_angle(ROBOT_MAX_ANGLE);
   motion_handler_.set_velocity(0,0);
   sensor_touch_->Reset();
-  set_lives(9);
-  foodhit_=0;
-  
+  set_starve(false);
+  set_hunger(false);
+  set_mealtime(0);  
 } /* Reset() */
 
 void Robot::HandleCollision(EntityType object_type, ArenaEntity * object) {
   sensor_touch_->HandleCollision(object_type, object);
   motion_handler_.UpdateVelocity();
   if (object_type == kFood) {
-  Food* food = dynamic_cast<Food*>(object);
-  object -> set_color(FOOD_HIT_COLOR);
-  food -> set_captured(true);
-  inc_foodhit();
+    set_mealtime(0);
+    set_hunger(false);
+    set_starve(false);
   } else if ((object_type == kRightWall) || (object_type == kLeftWall) || (object_type == kTopWall) || (object_type == kBottomWall)) {
    set_state(1);
   }

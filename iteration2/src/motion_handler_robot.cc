@@ -65,18 +65,19 @@ void MotionHandlerRobot::DecreaseSpeed() {
 }
 
 void MotionHandlerRobot::UpdateVelocity() {
+ set_velocity(clamp_vel(get_velocity().left),clamp_vel(get_velocity().right));
 }
 
 double MotionHandlerRobot::clamp_vel(double vel) {
   // @TODO: don't go backwards
   double clamped = 0.0;
   if (vel > 0) {
-    clamped = (vel > get_max_speed()) ?
-              get_max_speed():
+    clamped = (vel > 100) ?
+              100:
               vel;
   } else {
-    clamped = (vel < -get_max_speed()) ?
-              -get_max_speed():
+    clamped = (vel < -100) ?
+              -100:
               vel;
   }
   return clamped;

@@ -98,12 +98,8 @@ class Robot : public ArenaMobileEntity {
   */
   void TurnLeft();
 
-  int get_lives() const { return lives_;}
-
-  int get_foodhit() {return foodhit_;}
-
-  void set_lives(int l) { lives_ = l;}
-  void inc_foodhit() {foodhit_ = foodhit_+1;}
+  int get_mealtime() const { return mealtime;}
+  void set_mealtime(int l) { mealtime = l;}
   MotionHandlerRobot get_motion_handler() { return motion_handler_;}
   MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_;}
   LightSensor& get_left(){return left;}
@@ -125,8 +121,7 @@ class Robot : public ArenaMobileEntity {
   MotionBehaviorDifferential motion_behavior_;
   // Lives are decremented when the robot collides with anything.
   // When all the lives are gone, the game is lost.
-  int lives_;
-  int foodhit_;
+  int mealtime;
   LightSensor left;
   LightSensor right;
   FoodSensor leftFood;

@@ -137,6 +137,19 @@ void GraphicsArenaViewer::DrawRobotSensor(NVGcontext *ctx, const Robot *const ro
   nvgFill(ctx);
   nvgStrokeColor(ctx, nvgRGBA(0, 0, 0, 255));
   nvgStroke(ctx);
+
+  nvgBeginPath(ctx);
+  nvgCircle(ctx,
+            xpos,
+            ypos,
+            static_cast<float>(2));
+  nvgFillColor(ctx,
+               nvgRGBA(250, 250,
+                       0, 255));
+  nvgFill(ctx);
+  nvgStrokeColor(ctx, nvgRGBA(0, 0, 0, 255));
+  nvgStroke(ctx);
+
 }
 
 void GraphicsArenaViewer::DrawRobot(NVGcontext *ctx,

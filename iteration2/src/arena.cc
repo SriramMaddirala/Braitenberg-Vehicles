@@ -29,7 +29,16 @@ Arena::Arena(const struct arena_params *const params)
       robot_entities_(),
       game_status_(3) {
   AddRobot();
-  AddEntity(kFood, 3);
+  AddRobot();
+  AddRobot();
+  AddRobot();
+  AddRobot();
+  AddRobot();
+  AddRobot();
+ AddRobot();
+  AddRobot();
+  AddRobot();
+  AddEntity(kFood, 4);
   AddEntity(kLight, params->n_light);
 }
 
@@ -83,6 +92,13 @@ void Arena::UpdateEntitiesTimestep() {
   for (auto ent : entities_) {
     ent->TimestepUpdate(1);
   }
+  for(auto &ent: robot_entities_){
+  if ((ent->get_mealtime()) >= 150) {
+     set_game_status(LOST);      
+     robot_->set_color(LIGHT_COLOR);
+     return;
+   }
+ }
    /* Determine if any robot entity is colliding with wall.
    * Adjust the position accordingly so it doesn't overlap.
    */
@@ -109,6 +125,17 @@ void Arena::UpdateEntitiesTimestep() {
      	if(kLight==ent2->get_type()){
         	ent1->get_left().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
         	ent1->get_right().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
+         }
+         if(kFood==ent2->get_type()){
+           ent1->get_leftFood().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
+           ent1->get_rightFood().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
+	   double delta_x = ent2->get_pose().x - ent1->get_pose().x;
+           double delta_y = ent2->get_pose().y - ent1->get_pose().y;
+           double distance_between = sqrt(delta_x*delta_x + delta_y*delta_y);
+           bool eat = (distance_between <= (ent1->get_radius() + ent2->get_radius()+5));
+           if(eat){
+		ent1->HandleCollision(ent2->get_type(), ent2);
+	   }
          }
      }
   }
