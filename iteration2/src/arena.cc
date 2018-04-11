@@ -110,8 +110,8 @@ void Arena::UpdateEntitiesTimestep() {
       dynamic_cast<ArenaMobileEntity *>(ent)->HandleCollision(wall);
     }
    }
-    /* Determine if that mobile entity is colliding with any other entity.
-    * Adjust the position accordingly so they don't overlap.
+    /* Determine if a robot entity is colliding with any other entity.
+    * Adjust the position accordingly so they don't overlap. Also calulate readings for every robot
     */
    for(auto &ent1: robot_entities_){ 
      for (auto &ent2 : entities_) {
@@ -139,6 +139,7 @@ void Arena::UpdateEntitiesTimestep() {
          }
      }
   }
+  //Check for collisions between lights
   for(auto &ent3: entities_){
     for(auto &ent4: entities_){
     if(ent3==ent4){continue;}

@@ -36,23 +36,29 @@ Robot::Robot() :
  * Member Functions
  ******************************************************************************/
 void Robot::TimestepUpdate(unsigned int dt) {
+//mealtime is time since last meal
 if(mealtime>=30){
    set_hunger(true);
 }
 if(mealtime>=120){
+ //this means that the reading that has already been calculated gets reset to zero leading to 
+ // the robot ignoring the reading from light sensor
  set_starve(true);
  left.ResetReading();
  right.ResetReading();
 } 
 if(behavior==1){
-  motion_handler_.set_velocity(-right.getReading()/10,-left.getReading()/10);
+ //behavior is 1 when Exploratory
+   motion_handler_.set_velocity(-right.getReading()/10,-left.getReading()/10);
 }
  if(behavior==0){
+ //behavior is 0 when fearful
   motion_handler_.set_velocity( left.getReading()/10,right.getReading()/10);
-}  
+}
 if(hungry){
  motion_handler_.set_velocity(get_motion_handler().get_velocity().left+ rightFood.getReading(),get_motion_handler().get_velocity().right+ leftFood.getReading());
 }
+//implements the finite state automata for avoidance behavior
 if (get_state() == 0) {
   } else if (get_state() == 1) {
     set_heading(get_pose().theta+180);

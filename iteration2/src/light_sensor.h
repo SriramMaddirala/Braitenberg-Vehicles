@@ -18,6 +18,16 @@
  * Namespaces
  ******************************************************************************/
 NAMESPACE_BEGIN(csci3081);
+
+/**
+ * @brief Class representing a Light sensor.
+ *
+ * This is a Light sensor class that takes in the the position of the entity being sensed
+ * it then calculates the reading based on the position of that entity and
+ * its own position which it holds. This class inherits from base sensor and most of 
+ * the work is done in that class.
+ * Sensors are fed readings and return them when prompted.
+ */
 class LightSensor : public Sensor {
  public:
  LightSensor(MotionHandler handler, int xpos, int ypos):

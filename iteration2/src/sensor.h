@@ -18,6 +18,15 @@
  * Namespaces
  ******************************************************************************/
 NAMESPACE_BEGIN(csci3081);
+/**
+ * @brief Class representing a sensor.
+ *
+ * This is a base sensor class that takes in the the position of the entity being sensed
+ * it then calculates the reading based on the position of that entity and
+ * its own position which it holds
+ *
+ * Sensors are fed readings and return them when prompted.
+ */
 
 class Sensor {
  public:
