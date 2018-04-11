@@ -72,6 +72,8 @@ if (get_state() == 0) {
   // Reset Sensor for next cycle
   left.ResetReading();
   right.ResetReading();
+  leftFood.ResetReading();
+  rightFood.ResetReading();
   set_mealtime(get_mealtime()+1);  
 } /* TimestepUpdate() */
 
