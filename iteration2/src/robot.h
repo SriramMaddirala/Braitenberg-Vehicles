@@ -11,6 +11,7 @@
  * Includes
  ******************************************************************************/
 #include <string>
+#include <math.h>
 #include "src/food.h"
 #include "src/arena_mobile_entity.h"
 #include "src/common.h"
@@ -19,6 +20,7 @@
 #include "src/entity_type.h"
 #include "src/sensor.h"
 #include "src/light_sensor.h"
+#include "src/food_sensor.h"
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
@@ -106,8 +108,16 @@ class Robot : public ArenaMobileEntity {
   MotionBehaviorDifferential get_motion_behavior() { return motion_behavior_;}
   LightSensor& get_left(){return left;}
   LightSensor& get_right(){return right;}
+  FoodSensor& get_leftFood(){return leftFood;}
+  FoodSensor& get_rightFood(){return rightFood;}
   int get_state() {return state_;}
   void set_state(int state) {state_ = state;}
+  bool get_hunger() {return hungry;}
+  void set_hunger(int state) {hungry = state;}
+  bool get_starve() {return starve;}
+  void set_starve(int state) {starve = state;}
+  int get_behave() {return behavior;}
+  void set_behave(int behave) {behavior = behave;}
   private:
   // Manages pose and wheel velocities that change with time and collisions.
   MotionHandlerRobot motion_handler_;
@@ -119,7 +129,12 @@ class Robot : public ArenaMobileEntity {
   int foodhit_;
   LightSensor left;
   LightSensor right;
+  FoodSensor leftFood;
+  FoodSensor rightFood;
   int state_{0};
+  int behavior{0};
+  bool hungry{false};
+  bool starve{false};
 };
 
 NAMESPACE_END(csci3081);
