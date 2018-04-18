@@ -12,7 +12,6 @@
 
 #include "src/arena.h"
 #include "src/arena_params.h"
-
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
@@ -28,18 +27,15 @@ Arena::Arena(const struct arena_params *const params)
       entities_(),
       robot_entities_(),
       game_status_(3) {
-  AddRobot();
-  AddRobot();
-  AddRobot();
-  AddRobot();
-  AddRobot();
-  AddRobot();
-  AddRobot();
- AddRobot();
-  AddRobot();
-  AddRobot();
-  AddEntity(kFood, 4);
-  AddEntity(kLight, params->n_light);
+ factory_->fear_count_ = robotnum * fearnum * (1/10); 
+ factory_->sense = sensenum;
+ for(int i = 0; i< robotnum; i++){
+    AddRobot();
+  }
+  if(food){
+    AddEntity(kFood, foodnum);
+  }
+  AddEntity(kLight, lightnum);
 }
 
 Arena::~Arena() {
@@ -47,7 +43,16 @@ Arena::~Arena() {
     delete ent;
   } /* for(ent..) */
 }
-
+void Arena::New(){
+ factory_ = new EntityFactory;
+ for(int i = 0; i< ROBOTNUMBER; i++){
+    AddRobot();
+  }
+  if(FOOD){
+    AddEntity(kFood, FOOD_NUMBER);
+  }
+  AddEntity(kLight, N_LIGHT);
+}
 /*******************************************************************************
  * Member Functions
  ******************************************************************************/
@@ -92,14 +97,23 @@ void Arena::UpdateEntitiesTimestep() {
   for (auto ent : entities_) {
     ent->TimestepUpdate(1);
   }
+//  int i=0;
+  //for(auto &ent: robot_entities_){
+   // int behave =0;
+   // if(robot_count_<FEAR_COUNT){
+    // behave =1;
+    //}
+    //i++;
+  //}
+
   for(auto &ent: robot_entities_){
   if ((ent->get_mealtime()) >= 150) {
      set_game_status(LOST);      
      robot_->set_color(LIGHT_COLOR);
      return;
    }
- }
-   /* Determine if any robot entity is colliding with wall.
+ } 
+  /* Determine if any robot entity is colliding with wall.
    * Adjust the position accordingly so it doesn't overlap.
    */
   for (auto &ent : entities_) {
@@ -246,8 +260,8 @@ void Arena::AcceptCommand(Communication com) {
       break;
     case(kPause): set_game_status(3);
       break;
-    case(kReset): Reset();
-      break;
+//    case(kReset): Reset();
+  //    break;
     case(kNone):
     default: break;
   }

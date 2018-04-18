@@ -56,7 +56,7 @@ class Arena {
    * @brief Arena's destructor. `delete` all entities created.
    */
   ~Arena();
-
+   void New();
   /**
    * @brief Advance the simulation by the specified # of steps.
    *
@@ -181,6 +181,13 @@ class Arena {
 
   // win/lose/playing state
   int game_status_;
+public:
+  bool food{true};
+  int robotnum{10};
+  int foodnum{4};
+  int lightnum{5};
+  int fearnum{5};
+  int sensenum{1};
 };
 
 NAMESPACE_END(csci3081);

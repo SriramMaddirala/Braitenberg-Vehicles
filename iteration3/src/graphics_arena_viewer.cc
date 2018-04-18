@@ -15,7 +15,7 @@
 #include "src/graphics_arena_viewer.h"
 #include "src/arena_params.h"
 #include "src/rgb_color.h"
-
+#include "src/params.h"
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
@@ -38,13 +38,165 @@ GraphicsArenaViewer::GraphicsArenaViewer(
       gui->addWindow(
           Eigen::Vector2i(10 + GUI_MENU_GAP, 10),
           "Menu");
-
+ // vvvv  ADDED THIS ONE LINE to register the window  vvvv
+ // gui->addGroup creates a heading within the window
+  window->setLayout(new nanogui::GroupLayout());
   gui->addGroup("Simulation Control");
   playing_button_ =
     gui->addButton(
       "Play",
       std::bind(&GraphicsArenaViewer::OnPlayingBtnPressed, this));
+ playing_button_->setFixedWidth(100);
  screen()->setSize({X_DIM, Y_DIM}); 
+
+  gui->addGroup("Arena Configuration");
+
+  // Creating a panel impacts the layout. Widgets, sliders, buttons can be
+  // assigned to either the window or the panel.
+  nanogui::Widget *panel = new nanogui::Widget(window);
+
+  // *************** SLIDER 1 ************************//
+  new nanogui::Label(panel, "Number of Robots", "sans-bold");
+  nanogui::Slider *slider = new nanogui::Slider(panel);
+  // The starting value (range is from 0 to 1)
+  // Note that below the displayed value is 10* slider value.
+  slider->setValue(0.5f);
+  slider->setFixedWidth(100);
+  
+  // Display the corresponding value of the slider in this textbox
+  nanogui::TextBox *textBox = new nanogui::TextBox(panel);
+  textBox->setFixedSize(nanogui::Vector2i(60, 25));
+  textBox->setFontSize(20);
+  textBox->setValue("5");
+
+  // This is the lambda function called while the user is moving the slider
+  slider->setCallback(
+    [textBox](float value) {
+      textBox->setValue(std::to_string(int(value*10)));
+    }
+  );
+  // This is the lambda function called once the user is no longer manipulating the slider.
+  // Note robot_count_ is set, which is a graphics_arena_ variable in this version, although
+  // you should communicate that value to the controller so that it can configure the Arena.
+  slider->setFinalCallback(
+    [&](float value) {
+      robot_count_ = int(value*10);
+      arena_->robotnum = robot_count_;
+     }
+  );
+
+  // *************** SLIDER 2 ************************//
+  new nanogui::Label(panel, "Number of Lights", "sans-bold");
+  nanogui::Slider *slider2 = new nanogui::Slider(panel);
+  slider2->setValue(0.0f);
+  slider2->setFixedWidth(100);
+  //textBox->setUnits("%");
+
+  nanogui::TextBox *textBox2 = new nanogui::TextBox(panel);
+  textBox2->setFixedSize(nanogui::Vector2i(60, 25));
+  textBox2->setFontSize(20);
+  textBox2->setValue("0");
+  //textBox2->setAlignment(nanogui::TextBox::Alignment::Right);
+
+  slider2->setCallback(
+    [textBox2](float value) {
+      textBox2->setValue(std::to_string(int(value*5)));
+    }
+  );
+
+  slider2->setFinalCallback(
+    [&](float value) {
+      light_count_ = int(value*5);
+      arena_->lightnum= light_count_;
+    }
+  );
+
+  // *************** SLIDER 3 ************************//
+  new nanogui::Label(panel, "Percentage of Robots that exhibit Fear", "sans-bold");
+  nanogui::Slider *slider3 = new nanogui::Slider(panel);
+  slider3->setValue(0.0f);
+  slider3->setFixedWidth(100);
+  //textBox->setUnits("%");
+
+  nanogui::TextBox *textBox3 = new nanogui::TextBox(panel);
+  textBox3->setFixedSize(nanogui::Vector2i(60, 25));
+  textBox3->setFontSize(20);
+  textBox3->setValue("0");
+  //textBox2->setAlignment(nanogui::TextBox::Alignment::Right);
+
+  slider3->setCallback(
+    [textBox3](float value) {
+      textBox3->setValue(std::to_string(int(value*10)));
+    }
+  );
+
+  slider3->setFinalCallback(
+    [&](float value) {
+      fear_count_ = int(value*10);
+      arena_->fearnum =  fear_count_;
+     }
+  );
+
+ // *************** SLIDER 4 ************************//
+  new nanogui::Label(panel, "Sensitivity of Robots to Light", "sans-bold");
+  nanogui::Slider *slider4 = new nanogui::Slider(panel);
+  slider4->setValue(0.0f);
+  slider4->setFixedWidth(100);
+  //textBox->setUnits("%");
+
+  nanogui::TextBox *textBox4 = new nanogui::TextBox(panel);
+  textBox4->setFixedSize(nanogui::Vector2i(60, 25));
+  textBox4->setFontSize(20);
+  textBox4->setValue("0");
+  //textBox2->setAlignment(nanogui::TextBox::Alignment::Right);
+
+  slider4->setCallback(
+    [textBox4](float value) {
+      textBox4->setValue(std::to_string(int(value*10)));
+    }
+  );
+
+  slider4->setFinalCallback(
+    [&](float value) {
+      sensor_count_ = int(value*10);
+      arena_->sensenum = sensor_count_;
+    }
+  );
+ // *************** SLIDER 5 ************************//
+  new nanogui::Label(panel, "Food", "sans-bold");
+  nanogui::Slider *slider5 = new nanogui::Slider(panel);
+  slider5->setValue(0.0f);
+  slider5->setFixedWidth(100);
+  //textBox->setUnits("%");
+
+  nanogui::TextBox *textBox5 = new nanogui::TextBox(panel);
+  textBox5->setFixedSize(nanogui::Vector2i(60, 25));
+  textBox5->setFontSize(20);
+  textBox5->setValue("0");
+  //textBox2->setAlignment(nanogui::TextBox::Alignment::Right);
+
+  slider5->setCallback(
+    [textBox5](float value) {
+      textBox5->setValue(std::to_string(int(value*10)));
+    }
+  );
+
+  slider5->setFinalCallback(
+    [&](float value) {
+      food_count_ = int(value*10);
+      arena_->foodnum =  food_count_;
+    }
+  );
+
+
+  // Lays out all the components with "15" units of inbetween spacing
+  panel->setLayout(new nanogui::BoxLayout(nanogui::Orientation::Vertical, nanogui::Alignment::Middle, 0, 15));
+
+screen()->performLayout();
+  food_button_ =
+    gui->addButton(
+      "Food",
+      std::bind(&GraphicsArenaViewer::OnFoodBtnPressed, this));
  screen()->performLayout();
   new_button_ =
     gui->addButton(
@@ -79,6 +231,18 @@ void GraphicsArenaViewer::OnPlayingBtnPressed() {
 }
 void GraphicsArenaViewer::OnNewBtnPressed() {
   controller_->AcceptCommunication(kNewGame);
+}
+void GraphicsArenaViewer::OnFoodBtnPressed() {
+  food_ = !food_;
+  if (!food_) {
+//    controller_->AcceptCommunication(kSFood);
+    food_button_->setCaption("Food");
+    arena_->food= true;
+   } else {
+  // controller_->AcceptCommunication(kSNoFood);
+    food_button_->setCaption("No Food");
+    arena_->food = false;
+  }
 }
 /** OnSpecialKeyDown is called when the user presses down on one of the
   * special keys (e.g. the arrow keys).

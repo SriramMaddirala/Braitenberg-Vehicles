@@ -39,7 +39,7 @@ class Sensor {
  MotionHandler GetMotionHandler(){return motion_handler_;}
  void CalculateReading(int x, int y) { 
         int distance = pow((((xpose-x) * (xpose-x)) + ((ypose-y) * (ypose-y))),.5);        
-        int temp = 1200/(pow(1.008,distance));
+        int temp = pow(1200/(pow(1.008,distance)),constant);
         reading = temp + reading;
         if (reading > 1000){
             reading = 1000;
@@ -47,6 +47,7 @@ class Sensor {
 }
 void ResetReading(){reading=0;}
 int getReading(){return reading;}
+int constant{1};
  private:
   MotionHandler motion_handler_;
   int xpose;

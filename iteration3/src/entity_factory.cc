@@ -55,7 +55,13 @@ Robot* EntityFactory::CreateRobot() {
   robot->set_color(ROBOT_COLOR);
   robot->set_pose(SetPoseRandomly());
   robot->set_radius(ROBOT_RADIUS);
-  robot->set_behave(robot_count_%2);
+  robot->get_left().constant= 1 + sense/100;
+  robot->get_left().constant = 1 + sense/100;
+  int behave =0;
+  if(robot_count_<FEAR_COUNT){
+   behave =1;
+  }
+  robot->set_behave(behave);
   ++entity_count_;
   ++robot_count_;
   robot->set_id(robot_count_);

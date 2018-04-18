@@ -84,12 +84,14 @@ class EntityFactory {
   */
   Pose SetPoseRandomly();
 
-  /* Factory tracks the number of created entities. There is no accounting for
+public:  /* Factory tracks the number of created entities. There is no accounting for
    * the destruction of entities */
   int entity_count_{0};
   int robot_count_{0};
   int light_count_{0};
   int food_count_{0};
+  int fear_count_{5};
+  int sense{1};
 };
 
 NAMESPACE_END(csci3081);

@@ -17,7 +17,6 @@
 #include "src/common.h"
 #include "src/communication.h"
 #include "src/graphics_arena_viewer.h"
-#include "src/params.h"
 
 /*******************************************************************************
  * Namespaces
@@ -74,11 +73,13 @@ class Controller {
   * correctly received, interpreted, and relayed.
   */
   Communication ConvertComm(Communication com);
-
- private:
+ //foodnum should give the num to arena which creates up to foodnum entities
+private:
   double last_dt{0};
   Arena* arena_{nullptr};
   GraphicsArenaViewer* viewer_{nullptr};
+  //int robot_count_;
+  //int light_count_;
 };
 
 NAMESPACE_END(csci3081);
