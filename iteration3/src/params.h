@@ -27,12 +27,13 @@
 #define GUI_MENU_GAP 10
 
 // arena
-#define FOOD_NUMBER 3
+#define FOOD_NUMBER 4
+#define FOOD true
 #define N_LIGHT 4
 #define MAX_LIGHT 8
 #define ARENA_X_DIM X_DIM
 #define ARENA_Y_DIM Y_DIM
-
+#define SENSEREAD 1
 // game status
 #define WON 0
 #define LOST 1
@@ -65,7 +66,8 @@
 #define ROBOT_INIT_SPEED 0
 #define ROBOT_MAX_SPEED 100
 #define ROBOT_MAX_ANGLE 360
-
+#define ROBOTNUMBER 10
+#define FEAR_COUNT 5
 // food
 #define FOOD_RADIUS 20
 #define FOOD_COLLISION_DELTA 1

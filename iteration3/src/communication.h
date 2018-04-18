@@ -40,10 +40,8 @@ enum Communication {
 
   kNone,   // in case it is needed
 
-  kCollideWall,
-  kCollideRobot,
-  kCollidingLight,
-  kCollideFood
+  kSFood,
+  kSNoFood
 
 };
 

@@ -51,7 +51,28 @@ void Controller::AdvanceTime(double dt) {
 }
 
 void Controller::AcceptCommunication(Communication com) {
-     arena_->AcceptCommand(ConvertComm(com));
+ if(ConvertComm(com)==kReset){  
+  arena_params aparams;
+  aparams.n_light = N_LIGHT;
+  aparams.x_dim = ARENA_X_DIM;
+  aparams.y_dim = ARENA_Y_DIM;
+  int robotnumber = arena_->robotnum;
+  int fear_count = arena_->fearnum;
+  bool food = arena_->food;
+  int senseread= arena_->sensenum;
+  int food_number = arena_->foodnum;
+  int lightnum = arena_->lightnum;
+  arena_->~Arena();
+  arena_ = new Arena(&aparams);
+  arena_->robotnum= robotnumber;
+  arena_->fearnum= fear_count;
+  arena_->food=food;
+  arena_->sensenum=senseread;
+  arena_->foodnum=food_number;
+  arena_->lightnum=lightnum;
+  viewer_->arena_=arena_;
+ } 
+ arena_->AcceptCommand(ConvertComm(com));
 }
 void Controller::AcceptCommunicationUp(Communication com) {
   viewer_->AcceptCommunication(com);
