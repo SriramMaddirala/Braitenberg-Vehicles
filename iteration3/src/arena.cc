@@ -105,6 +105,12 @@ void Arena::UpdateEntitiesTimestep() {
      return;
    }
  } 
+    CheckRobotsWall();
+    CheckRobotsCollision();
+    CheckLightsCollision();
+   
+}  // UpdateEntitiesTimestep()
+ void Arena::CheckRobotsWall(){
   /* Determine if any robot entity is colliding with wall.
    * Adjust the position accordingly so it doesn't overlap.
    */
@@ -116,35 +122,41 @@ void Arena::UpdateEntitiesTimestep() {
       dynamic_cast<ArenaMobileEntity *>(ent)->HandleCollision(wall);
     }
    }
-    /* Determine if a robot entity is colliding with any other entity.
+ }
+
+void Arena::CheckRobotsCollision(){
+   /* Determine if a robot entity is colliding with any other entity.
     * Adjust the position accordingly so they don't overlap. Also calulate readings for every robot
     */
    for(auto &ent1: robot_entities_){ 
      for (auto &ent2 : entities_) {
       if (ent2 == ent1) { continue; } 
-     	if (IsColliding(ent1, ent2)) {
-        	if(ent2->get_type()==kRobot){
+      if (IsColliding(ent1, ent2)) {
+          if(ent2->get_type()==kRobot){
                 AdjustEntityOverlap(ent1, ent2);
-        	ent1->HandleCollision(ent2->get_type(), ent2);
-      	    }
+          ent1->HandleCollision(ent2->get_type(), ent2);
+            }
         }
-     	if(kLight==ent2->get_type()){
-        	ent1->get_left().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
-        	ent1->get_right().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
+      if(kLight==ent2->get_type()){
+          ent1->get_left().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
+          ent1->get_right().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
          }
          if(kFood==ent2->get_type()){
            ent1->get_leftFood().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
            ent1->get_rightFood().CalculateReading(ent2->get_pose().x,ent2->get_pose().y);
-	   double delta_x = ent2->get_pose().x - ent1->get_pose().x;
+           double delta_x = ent2->get_pose().x - ent1->get_pose().x;
            double delta_y = ent2->get_pose().y - ent1->get_pose().y;
            double distance_between = sqrt(delta_x*delta_x + delta_y*delta_y);
            bool eat = (distance_between <= (ent1->get_radius() + ent2->get_radius()+5));
            if(eat){
-		ent1->HandleCollision(ent2->get_type(), ent2);
-	   }
+             ent1->HandleCollision(ent2->get_type(), ent2);
+           }
          }
      }
   }
+}
+
+void Arena::CheckLightsCollision(){
   //Check for collisions between lights
   for(auto &ent3: entities_){
     for(auto &ent4: entities_){
@@ -159,7 +171,7 @@ void Arena::UpdateEntitiesTimestep() {
       } 
    }
   }
-}  // UpdateEntitiesTimestep()
+}
 // Determine if the entity is colliding with a wall.
 // Always returns an entity type. If not collision, returns kUndefined.
 EntityType Arena::GetCollisionWall(ArenaMobileEntity *const ent) {

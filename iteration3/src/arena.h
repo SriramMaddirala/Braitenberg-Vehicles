@@ -152,6 +152,12 @@ class Arena {
    */
   void UpdateEntitiesTimestep();
 
+  void CheckRobotsWall();
+
+  void CheckRobotsCollision();
+
+  void CheckLightsCollision();
+
   std::vector<class ArenaEntity *> get_entities() const { return entities_; }
 
   std::vector<class Robot *> get_robotentities() const { return robot_entities_; }
