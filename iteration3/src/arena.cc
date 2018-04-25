@@ -97,14 +97,6 @@ void Arena::UpdateEntitiesTimestep() {
   for (auto ent : entities_) {
     ent->TimestepUpdate(1);
   }
-//  int i=0;
-  //for(auto &ent: robot_entities_){
-   // int behave =0;
-   // if(robot_count_<FEAR_COUNT){
-    // behave =1;
-    //}
-    //i++;
-  //}
 
   for(auto &ent: robot_entities_){
   if ((ent->get_mealtime()) >= 150) {
