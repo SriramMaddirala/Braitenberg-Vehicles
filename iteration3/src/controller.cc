@@ -57,6 +57,7 @@ void Controller::AcceptCommunication(Communication com) {
   aparams.x_dim = ARENA_X_DIM;
   aparams.y_dim = ARENA_Y_DIM;
   int robotnumber = arena_->robotnum;
+  std::cout<< robotnumber << std::endl;
   int fear_count = arena_->fearnum;
   bool food = arena_->food;
   int senseread= arena_->sensenum;
