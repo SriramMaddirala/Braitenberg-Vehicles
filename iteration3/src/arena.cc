@@ -156,7 +156,7 @@ void Arena::CheckRobotsCollision(){
            double distance_between = sqrt(delta_x*delta_x + delta_y*delta_y);
            bool eat = (distance_between <= (ent1->get_radius() + ent2->get_radius()+5));
            if(eat){
-             ent1->HandleCollision(ent2->get_type(), ent2);
+                ent1->HandleCollision(ent2->get_type(), ent2);
            }
          }
      }

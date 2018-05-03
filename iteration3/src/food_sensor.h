@@ -32,7 +32,7 @@ class FoodSensor : public Sensor {
  FoodSensor(MotionHandler handler, int xpos, int ypos):
  Sensor(handler, xpos, ypos){}
  ~FoodSensor(){}
- private:
+  private:
 };
 
 NAMESPACE_END(csci3081);

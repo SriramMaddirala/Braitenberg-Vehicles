@@ -38,18 +38,19 @@ class Sensor {
  virtual ~Sensor();
  MotionHandler GetMotionHandler(){return motion_handler_;}
  void CalculateReading(int x, int y) { 
-        int distance = pow((((xpose-x) * (xpose-x)) + ((ypose-y) * (ypose-y))),.5);        
-        int temp = pow(1200/(pow(1.008,distance)),constant);
+        int distance = sqrt((((xpose-x) * (xpose-x)) + ((ypose-y) * (ypose-y))));        
+        int temp = (1+ constant - 1) * (1200/(pow(1.008,distance)));
         reading = temp + reading;
         if (reading > 1000){
             reading = 1000;
 	}
 }
+void setconstant(int sense){constant=sense;}
 void ResetReading(){reading=0;}
 int getReading(){return reading;}
-int constant{1};
  private:
   MotionHandler motion_handler_;
+  int constant{1};
   int xpose;
   int ypose;
   int reading;

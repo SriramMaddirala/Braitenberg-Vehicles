@@ -50,14 +50,17 @@ if(mealtime>=120){
 if(behavior==1){
  //behavior is 1 when Exploratory
    motion_handler_.set_velocity(-right.getReading()/100,-left.getReading()/100);
-   std::cout<<right.getReading()<< std::endl;
-}
+ }
  if(behavior==0){
  //behavior is 0 when fearful
-  motion_handler_.set_velocity( left.getReading()/100,right.getReading()/100);
+  motion_handler_.set_velocity(left.getReading()/100,right.getReading()/100);
 }
 if(hungry){
- motion_handler_.set_velocity(get_motion_handler().get_velocity().left+ rightFood.getReading(),get_motion_handler().get_velocity().right+ leftFood.getReading());
+ motion_handler_.set_velocity(get_motion_handler().get_velocity().left+ rightFood.getReading()/100,get_motion_handler().get_velocity().right+ leftFood.getReading()/100);
+}
+if(starve){
+ std::cout<< mealtime<< std::endl;
+ motion_handler_.set_velocity(rightFood.getReading()/100,leftFood.getReading()/100);
 }
 //implements the finite state automata for avoidance behavior
 if (get_state() == 0) {
