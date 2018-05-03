@@ -26,7 +26,14 @@ Arena::Arena(const struct arena_params *const params)
       factory_(new EntityFactory),
       entities_(),
       robot_entities_(),
-      game_status_(3) {
+      game_status_(3),
+      lightnum(params->n_light),
+      robotnum(params->n_robot),
+      food(params->food),
+      foodnum(params->n_food),
+      fearnum(params->n_fear),
+      sensenum(params->s_dim)
+      {
  factory_->fear_count_ = robotnum * fearnum * (1/10); 
  factory_->sense = sensenum;
  for(int i = 0; i< robotnum; i++){

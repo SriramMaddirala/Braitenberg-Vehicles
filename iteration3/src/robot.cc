@@ -23,7 +23,7 @@ Robot::Robot() :
     motion_behavior_(this),
     left(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta + 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta + 40))*( M_PI /180)),    
     right(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta - 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta - 40))*( M_PI /180)),
-   leftFood(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta + 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta + 40))*( M_PI /180)),
+    leftFood(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta + 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta + 40))*( M_PI /180)),
     rightFood(get_motion_handler(), get_pose().x+(ROBOT_RADIUS* cos(get_pose().theta - 40))*( M_PI /180), get_pose().y +(ROBOT_RADIUS * sin(get_pose().theta - 40))*( M_PI /180))
    {
   set_type(kRobot);
@@ -49,11 +49,12 @@ if(mealtime>=120){
 } 
 if(behavior==1){
  //behavior is 1 when Exploratory
-   motion_handler_.set_velocity(-right.getReading()/10,-left.getReading()/10);
+   motion_handler_.set_velocity(-right.getReading()/100,-left.getReading()/100);
+   std::cout<<right.getReading()<< std::endl;
 }
  if(behavior==0){
  //behavior is 0 when fearful
-  motion_handler_.set_velocity( left.getReading()/10,right.getReading()/10);
+  motion_handler_.set_velocity( left.getReading()/100,right.getReading()/100);
 }
 if(hungry){
  motion_handler_.set_velocity(get_motion_handler().get_velocity().left+ rightFood.getReading(),get_motion_handler().get_velocity().right+ leftFood.getReading());

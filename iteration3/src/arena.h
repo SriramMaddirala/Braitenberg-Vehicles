@@ -168,6 +168,24 @@ class Arena {
   int get_game_status() const { return game_status_; }
   void set_game_status(int status) { game_status_ = status; }
 
+  int get_lightnum() { return lightnum; }
+  void set_lightnum(int light) { lightnum= light; }
+  
+  int get_sensenum() { return sensenum; }
+  void set_sensenum(int senseread) { sensenum= senseread; }
+
+  int get_fearnum() { return fearnum; }
+  void set_fearnum(int fear) { fearnum= fear; }
+
+  int get_foodbool() { return food; }
+  void set_foodbool(bool foodbool) { food= foodbool; }
+
+  int get_foodnum() { return foodnum; }
+  void set_foodnum(int foodn) { foodnum= foodn; }
+ 
+  int get_robotnum() { return robotnum; }
+  void set_robotnum(int robo) { robotnum= robo; }
+  
  private:
   // Dimensions of graphics window inside which entities must operate
   double x_dim_;
@@ -187,11 +205,10 @@ class Arena {
 
   // win/lose/playing state
   int game_status_;
-public:
-  bool food{true};
-  int robotnum{10};
-  int foodnum{4};
   int lightnum{5};
+  int robotnum{10};
+  bool food{true};
+  int foodnum{4};
   int fearnum{5};
   int sensenum{1};
 };

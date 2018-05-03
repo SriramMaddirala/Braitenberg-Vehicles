@@ -80,8 +80,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
   // you should communicate that value to the controller so that it can configure the Arena.
   slider->setFinalCallback(
     [&](float value) {
-      robot_count_ = int(value*10);
-      arena_->robotnum = robot_count_;
+      arena_->set_robotnum(int(value*10));
      }
   );
 
@@ -106,8 +105,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
 
   slider2->setFinalCallback(
     [&](float value) {
-      light_count_ = int(value*5);
-      arena_->lightnum= light_count_;
+      arena_->set_lightnum(int(value*5));
     }
   );
 
@@ -132,8 +130,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
 
   slider3->setFinalCallback(
     [&](float value) {
-      fear_count_ = int(value*10);
-      arena_->fearnum =  fear_count_;
+      arena_->set_fearnum(int(value*10));
      }
   );
 
@@ -158,8 +155,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
 
   slider4->setFinalCallback(
     [&](float value) {
-      sensor_count_ = int(value*10);
-      arena_->sensenum = sensor_count_;
+      arena_->set_sensenum(int(value*10));
     }
   );
  // *************** SLIDER 5 ************************//
@@ -183,8 +179,7 @@ GraphicsArenaViewer::GraphicsArenaViewer(
 
   slider5->setFinalCallback(
     [&](float value) {
-      food_count_ = int(value*10);
-      arena_->foodnum =  food_count_;
+      arena_->set_foodnum(int(value*10));
     }
   );
 
@@ -237,11 +232,11 @@ void GraphicsArenaViewer::OnFoodBtnPressed() {
   if (!food_) {
 //    controller_->AcceptCommunication(kSFood);
     food_button_->setCaption("Food");
-    arena_->food= true;
+    arena_->set_foodbool(true);
    } else {
   // controller_->AcceptCommunication(kSNoFood);
     food_button_->setCaption("No Food");
-    arena_->food = false;
+    arena_->set_foodbool(false);
   }
 }
 /** OnSpecialKeyDown is called when the user presses down on one of the

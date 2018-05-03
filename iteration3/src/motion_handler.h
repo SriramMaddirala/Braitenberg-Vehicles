@@ -127,6 +127,7 @@ class MotionHandler {
   void set_velocity(double vl, double vr) {
     velocity_.left = vl;
     velocity_.right = vr;
+    std::cout<<velocity_.left << " " <<  velocity_.right<<std::endl;
   }
 
   ArenaMobileEntity * get_entity() { return entity_; }
