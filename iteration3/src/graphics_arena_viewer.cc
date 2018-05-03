@@ -225,7 +225,9 @@ void GraphicsArenaViewer::OnPlayingBtnPressed() {
   }
 }
 void GraphicsArenaViewer::OnNewBtnPressed() {
-  controller_->AcceptCommunication(kNewGame);
+   controller_->AcceptCommunication(kNewGame);
+   controller_->AcceptCommunication(kPause);
+    playing_button_->setCaption("Paused");
 }
 void GraphicsArenaViewer::OnFoodBtnPressed() {
   food_ = !food_;
