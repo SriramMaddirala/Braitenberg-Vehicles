@@ -31,6 +31,11 @@ NAMESPACE_BEGIN(csci3081);
 */
 struct arena_params {
   size_t n_light{N_LIGHT};
+  size_t n_robot{ROBOTNUMBER};
+  size_t n_food{FOOD_NUMBER};
+  bool food{FOOD};
+  size_t n_fear{FEAR_COUNT};
+  uint s_dim{SENSEREAD};
   uint x_dim{ARENA_X_DIM};
   uint y_dim{ARENA_Y_DIM};
 };
