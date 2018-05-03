@@ -121,7 +121,7 @@ class Robot : public ArenaMobileEntity {
   MotionBehaviorDifferential motion_behavior_;
   // Lives are decremented when the robot collides with anything.
   // When all the lives are gone, the game is lost.
-  int mealtime;
+  int mealtime{0};
   LightSensor left;
   LightSensor right;
   FoodSensor leftFood;
