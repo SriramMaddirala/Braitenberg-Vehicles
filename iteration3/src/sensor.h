@@ -13,7 +13,6 @@
 #include "src/pose.h"
 #include "src/entity_type.h"
 #include "src/arena_entity.h"
-#include "src/motion_handler.h"
 /*******************************************************************************
  * Namespaces
  ******************************************************************************/
@@ -30,13 +29,11 @@ NAMESPACE_BEGIN(csci3081);
 
 class Sensor {
  public:
- Sensor(MotionHandler handler, int xpos, int ypos):
- motion_handler_(handler),
- xpose(xpos),
+ Sensor(int xpos, int ypos):
+  xpose(xpos),
  ypose(ypos),
  reading(0){}
  virtual ~Sensor();
- MotionHandler GetMotionHandler(){return motion_handler_;}
  void CalculateReading(int x, int y) { 
         int distance = sqrt((((xpose-x) * (xpose-x)) + ((ypose-y) * (ypose-y))));        
         int temp = (1+ constant - 1) * (1200/(pow(1.008,distance)));
@@ -49,7 +46,6 @@ void setconstant(int sense){constant=sense;}
 void ResetReading(){reading=0;}
 int getReading(){return reading;}
  private:
-  MotionHandler motion_handler_;
   int constant{1};
   int xpose;
   int ypose;
