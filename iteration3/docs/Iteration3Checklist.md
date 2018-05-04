@@ -6,16 +6,16 @@
 
 ### Compilation and Execution
 
-- [ ] I cloned **fresh** from github onto a cselabs machine to test compilation
-- [ ] Submission is on the master branch of the my project repo "project-<username>"
-- [ ] _/iteration3_ folder exists
-- [ ] _/build_ is not in the repo
-- [ ] _/html_ is not in _docs_
-- [ ] **__`make` from src completes without error.__**
-- [ ] `./../build/bin/arenaviewer` executes without assert or a seg fault
+- [ x] I cloned **fresh** from github onto a cselabs machine to test compilation
+- [ x] Submission is on the master branch of the my project repo "project-<username>"
+- [x ] _/iteration3_ folder exists
+- [ x] _/build_ is not in the repo
+- [ x] _/html_ is not in _docs_
+- [x ] **__`make` from src completes without error.__**
+- [ x] `./../build/bin/arenaviewer` executes without assert or a seg fault
 - [ ] `cpplint.py *.cc` reports no errors
 - [ ] `cpplint.py --root=.. *.h` reports no errors
-- [ ] `doxygen docs/Doxyfile` compiles
+- [ x] `doxygen docs/Doxyfile` compiles
 
 ### Primary Functionality
 
@@ -35,12 +35,12 @@
 | User can pause simulation. | x |  |  |  |
 | User can create new simulation (new game). |x  |  |  |  |
 | **__TESTS__** |
-| Tests for light sensor functionality exist. |  |  |  |  |
-| Tests for light sensor compile. |  |  |  |  |
-| Tests for light sensor pass. |  |  |  |  |
-| Tests for wheel velocity functionality exist. |  |  |  |  |
-| Tests for wheel velocity compile. |  |  |  |  |
-| Tests for wheel velocity pass. |  |  |  |  | |
+| Tests for light sensor functionality exist. | x |  |  |  |
+| Tests for light sensor compile. | x |  |  |  |
+| Tests for light sensor pass. |  | x |  |  |
+| Tests for wheel velocity functionality exist. | x |  |  |  |
+| Tests for wheel velocity compile. |x  |  |  |  |
+| Tests for wheel velocity pass. |  | x |  |  | |
 
 <hr>
 
@@ -89,14 +89,14 @@ For the table below, please identify which aspects were fixed. You should put an
 
 - [x ] The UML document &lt;username&gt;_UML.pdf file for the iteration 3 exists in _docs_.
 - [x ] The UML document reflects the requirements of iteration 3.
-- [ ] _mainpage.h_ or _mainpage.md_ is in the /src folder.
-- [ ] I have compiled doxygen and looked at the generated mainpage.
-- [ ] The mainpage includes a user guide for technical users.
-- [ ] The mainpage includes a user guide for non-technical users.
-- [ ] I commented my code where appropriate.
+- [ x] _mainpage.h_ or _mainpage.md_ is in the /src folder.
+- [x ] I have compiled doxygen and looked at the generated mainpage.
+- [ x] The mainpage includes a user guide for technical users.
+- [x ] The mainpage includes a user guide for non-technical users.
+- [x ] I commented my code where appropriate.
 
 ### Linter and Git
-- [ ] The code complies with naming conventions for classes, methods, and members.
+- [ x] The code complies with naming conventions for classes, methods, and members.
 - [x ] There exists a history of git commit messages to show effort.
 - [x ] There exists a history of issues and branches to show effort.
 
@@ -109,8 +109,8 @@ For the table below, please identify which aspects were fixed. You should put an
 
 When everything above is as you want it or it is 11:55pm on Tuesday, it is time to submit!
 
-- [ ] I pushed this file and any changes resulting from this checklist.
-- [ ] Everything is in the **__master__** branch.
+- [ x] I pushed this file and any changes resulting from this checklist.
+- [x ] Everything is in the **__master__** branch.
 
 _One more thing -- check that what you think you pushed was really pushed to github on the master branch. If you can see it, we can see it. If you can't, we can't._
 
