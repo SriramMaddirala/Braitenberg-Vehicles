@@ -204,7 +204,9 @@ class GraphicsArenaViewer : public GraphicsApp {
   void OnNewBtnPressed();
   
   void OnFoodBtnPressed();
- 
+  
+  void SetArena(Arena *newarena){arena_=newarena;}  
+   
  private:
   void DrawText(NVGcontext *ctx);
   void DrawArena(NVGcontext *ctx);
@@ -231,7 +233,7 @@ class GraphicsArenaViewer : public GraphicsApp {
   void DrawEntity(NVGcontext *ctx, const class ArenaEntity *const entity);
 
   Controller *controller_;
-public:  Arena *arena_;
+  Arena *arena_;
   bool paused_{true};
   bool food_{false};
   Communication status_{kNone};
@@ -239,11 +241,6 @@ public:  Arena *arena_;
   nanogui::Button *playing_button_{nullptr};
   nanogui::Button *new_button_{nullptr};
   nanogui::Button *food_button_{nullptr};
-  int robot_count_;
-  int food_count_;
-  int light_count_;
-  int sensor_count_;
-  int fear_count_;
 };
 
 NAMESPACE_END(csci3081);

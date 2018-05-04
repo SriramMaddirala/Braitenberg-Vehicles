@@ -78,8 +78,6 @@ private:
   double last_dt{0};
   Arena* arena_{nullptr};
   GraphicsArenaViewer* viewer_{nullptr};
-  //int robot_count_;
-  //int light_count_;
 };
 
 NAMESPACE_END(csci3081);

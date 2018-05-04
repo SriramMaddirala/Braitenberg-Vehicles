@@ -67,7 +67,7 @@ void Controller::AcceptCommunication(Communication com) {
   aparams.n_light = arena_->get_lightnum();
   arena_->~Arena();
   arena_ = new Arena(&aparams);
-  viewer_->arena_=arena_;
+  viewer_->SetArena(arena_);
  } 
  arena_->AcceptCommand(ConvertComm(com));
 }
