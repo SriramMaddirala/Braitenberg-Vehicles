@@ -23,7 +23,7 @@ class SensorTest : public ::testing::Test {
  * Test Cases
  ******************************************************************************/
 
-TEST_F(SensorTest, TestDestructorConstructor ) {
+TEST_F(SensorTest, TestConstructor ) {
   csci3081::LightSensor *constr = new csci3081::LightSensor(0,0);
   EXPECT_EQ(constr->getReading(), 0) << "FAIL: getReading did not work";
   };
