@@ -1,0 +1,48 @@
+\hypertarget{class_sensor}{}\section{Sensor Class Reference}
+\label{class_sensor}\index{Sensor@{Sensor}}
+
+
+Class representing a sensor.  
+
+
+
+
+{\ttfamily \#include $<$sensor.\+h$>$}
+
+Inheritance diagram for Sensor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sensor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_sensor_a8b559df119764bb2f85d72116dacdb71}\label{class_sensor_a8b559df119764bb2f85d72116dacdb71}} 
+{\bfseries Sensor} (int xpos, int ypos)
+\item 
+\mbox{\Hypertarget{class_sensor_a7bcda7b39b3c738116cdbbe2a45f9ed0}\label{class_sensor_a7bcda7b39b3c738116cdbbe2a45f9ed0}} 
+void {\bfseries Calculate\+Reading} (int x, int y)
+\item 
+\mbox{\Hypertarget{class_sensor_a01eeddbc642c27e3aeb232d2a15c4a75}\label{class_sensor_a01eeddbc642c27e3aeb232d2a15c4a75}} 
+void {\bfseries setconstant} (int sense)
+\item 
+\mbox{\Hypertarget{class_sensor_a6cde7ca5e60c12b56cb87a9859991de2}\label{class_sensor_a6cde7ca5e60c12b56cb87a9859991de2}} 
+void {\bfseries Reset\+Reading} ()
+\item 
+\mbox{\Hypertarget{class_sensor_a33dde25c2a380263305ebef3e158f5b0}\label{class_sensor_a33dde25c2a380263305ebef3e158f5b0}} 
+int {\bfseries get\+Reading} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class representing a sensor. 
+
+This is a base sensor class that takes in the the position of the entity being sensed it then calculates the reading based on the position of that entity and its own position which it holds
+
+Sensors are fed readings and return them when prompted. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/sensor.\+h\item 
+src/sensor.\+cc\end{DoxyCompactItemize}

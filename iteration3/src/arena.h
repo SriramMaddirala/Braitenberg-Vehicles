@@ -56,7 +56,6 @@ class Arena {
    * @brief Arena's destructor. `delete` all entities created.
    */
   ~Arena();
-   void New();
   /**
    * @brief Advance the simulation by the specified # of steps.
    *

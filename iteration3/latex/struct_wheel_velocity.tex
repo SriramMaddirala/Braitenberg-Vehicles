@@ -1,0 +1,81 @@
+\hypertarget{struct_wheel_velocity}{}\section{Wheel\+Velocity Struct Reference}
+\label{struct_wheel_velocity}\index{Wheel\+Velocity@{Wheel\+Velocity}}
+
+
+A simple representation of the position/orientation of an entity within the \mbox{\hyperlink{class_arena}{Arena}}.  
+
+
+
+
+{\ttfamily \#include $<$wheel\+\_\+velocity.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_wheel_velocity_a20d96cc07cac3a0ebaea27e852f262a7}\label{struct_wheel_velocity_a20d96cc07cac3a0ebaea27e852f262a7}} 
+\mbox{\hyperlink{struct_wheel_velocity_a20d96cc07cac3a0ebaea27e852f262a7}{Wheel\+Velocity}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initialize the pose to (0,0,0) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_wheel_velocity_a08a753191ddcffb83592d60e4e46be65}{Wheel\+Velocity}} (double l, double r)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_wheel_velocity}{Wheel\+Velocity}} \& \mbox{\hyperlink{struct_wheel_velocity_a43eee436deaaa5fb6e0d747c2cc4d266}{operator=}} (const \mbox{\hyperlink{struct_wheel_velocity}{Wheel\+Velocity}} \&other)=default
+\begin{DoxyCompactList}\small\item\em Default assignment operator. Simply copies the (x,y) values of another \mbox{\hyperlink{struct_pose}{Pose}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_wheel_velocity_a16cfad265d944e9734d1dfa198c98438}\label{struct_wheel_velocity_a16cfad265d944e9734d1dfa198c98438}} 
+double {\bfseries left}
+\item 
+\mbox{\Hypertarget{struct_wheel_velocity_a7aa2910779ef5ed0b2975d8675918a6a}\label{struct_wheel_velocity_a7aa2910779ef5ed0b2975d8675918a6a}} 
+double {\bfseries right}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A simple representation of the position/orientation of an entity within the \mbox{\hyperlink{class_arena}{Arena}}. 
+
+N\+O\+TE\+: Origin (0,0) is at the upper left corner of the \mbox{\hyperlink{class_arena}{Arena}}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_wheel_velocity_a08a753191ddcffb83592d60e4e46be65}\label{struct_wheel_velocity_a08a753191ddcffb83592d60e4e46be65}} 
+\index{Wheel\+Velocity@{Wheel\+Velocity}!Wheel\+Velocity@{Wheel\+Velocity}}
+\index{Wheel\+Velocity@{Wheel\+Velocity}!Wheel\+Velocity@{Wheel\+Velocity}}
+\subsubsection{\texorpdfstring{Wheel\+Velocity()}{WheelVelocity()}}
+{\footnotesize\ttfamily Wheel\+Velocity\+::\+Wheel\+Velocity (\begin{DoxyParamCaption}\item[{double}]{l,  }\item[{double}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+\_\+x} & The X component of the \mbox{\hyperlink{struct_pose}{Pose}}. \\
+\hline
+{\em in\+\_\+y} & The Y component of the \mbox{\hyperlink{struct_pose}{Pose}}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_wheel_velocity_a43eee436deaaa5fb6e0d747c2cc4d266}\label{struct_wheel_velocity_a43eee436deaaa5fb6e0d747c2cc4d266}} 
+\index{Wheel\+Velocity@{Wheel\+Velocity}!operator=@{operator=}}
+\index{operator=@{operator=}!Wheel\+Velocity@{Wheel\+Velocity}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_wheel_velocity}{Wheel\+Velocity}}\& Wheel\+Velocity\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_wheel_velocity}{Wheel\+Velocity}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default assignment operator. Simply copies the (x,y) values of another \mbox{\hyperlink{struct_pose}{Pose}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \mbox{\hyperlink{struct_pose}{Pose}} object to copy from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The left-\/hand-\/side \mbox{\hyperlink{struct_pose}{Pose}} object that is now identical (in value) to {\ttfamily other}. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{wheel__velocity_8h}{wheel\+\_\+velocity.\+h}}\end{DoxyCompactItemize}

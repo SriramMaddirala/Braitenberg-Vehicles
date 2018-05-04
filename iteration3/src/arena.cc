@@ -50,16 +50,6 @@ Arena::~Arena() {
     delete ent;
   } /* for(ent..) */
 }
-void Arena::New(){
- factory_ = new EntityFactory;
- for(int i = 0; i< ROBOTNUMBER; i++){
-    AddRobot();
-  }
-  if(FOOD){
-    AddEntity(kFood, FOOD_NUMBER);
-  }
-  AddEntity(kLight, N_LIGHT);
-}
 /*******************************************************************************
  * Member Functions
  ******************************************************************************/
@@ -106,7 +96,7 @@ void Arena::UpdateEntitiesTimestep() {
   }
 
   for(auto &ent: robot_entities_){
-  if ((ent->get_mealtime()) >= 150) {
+  if (((ent->get_mealtime()) >= 150)&&(food)) {
      set_game_status(LOST);      
      robot_->set_color(LIGHT_COLOR);
      return;

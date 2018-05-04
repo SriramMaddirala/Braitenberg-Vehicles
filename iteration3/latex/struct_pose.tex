@@ -1,0 +1,87 @@
+\hypertarget{struct_pose}{}\section{Pose Struct Reference}
+\label{struct_pose}\index{Pose@{Pose}}
+
+
+A simple representation of the position/orientation of an entity within the \mbox{\hyperlink{class_arena}{Arena}}.  
+
+
+
+
+{\ttfamily \#include $<$pose.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_pose_a8a4171c8a6b09e37fb011997da9ea2ad}\label{struct_pose_a8a4171c8a6b09e37fb011997da9ea2ad}} 
+\mbox{\hyperlink{struct_pose_a8a4171c8a6b09e37fb011997da9ea2ad}{Pose}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initialize the pose to (0,0,0) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_pose_ac947d7046547d883f782ab2408cb80ed}{Pose}} (double in\+\_\+x, double in\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_pose_a6ebb8a1510c5915fa1dbec0f7ba0ad1c}\label{struct_pose_a6ebb8a1510c5915fa1dbec0f7ba0ad1c}} 
+{\bfseries Pose} (double in\+\_\+x, double in\+\_\+y, double in\+\_\+theta)
+\item 
+\mbox{\hyperlink{struct_pose}{Pose}} \& \mbox{\hyperlink{struct_pose_aec0a9478daefa358aa2f1873cbaf0271}{operator=}} (const \mbox{\hyperlink{struct_pose}{Pose}} \&other)=default
+\begin{DoxyCompactList}\small\item\em Default assignment operator. Simply copies the (x,y) values of another \mbox{\hyperlink{struct_pose}{Pose}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_pose_a0061c7789df90f593ab95118cbef387f}\label{struct_pose_a0061c7789df90f593ab95118cbef387f}} 
+double {\bfseries x} \{0\}
+\item 
+\mbox{\Hypertarget{struct_pose_a6280216efe0840a7a55f025ad04e3b3d}\label{struct_pose_a6280216efe0840a7a55f025ad04e3b3d}} 
+double {\bfseries y} \{0\}
+\item 
+\mbox{\Hypertarget{struct_pose_a25709c116282114c9f512b205f3f1133}\label{struct_pose_a25709c116282114c9f512b205f3f1133}} 
+double {\bfseries theta} \{0.\+0\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A simple representation of the position/orientation of an entity within the \mbox{\hyperlink{class_arena}{Arena}}. 
+
+N\+O\+TE\+: Origin (0,0) is at the upper left corner of the \mbox{\hyperlink{class_arena}{Arena}}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_pose_ac947d7046547d883f782ab2408cb80ed}\label{struct_pose_ac947d7046547d883f782ab2408cb80ed}} 
+\index{Pose@{Pose}!Pose@{Pose}}
+\index{Pose@{Pose}!Pose@{Pose}}
+\subsubsection{\texorpdfstring{Pose()}{Pose()}}
+{\footnotesize\ttfamily Pose\+::\+Pose (\begin{DoxyParamCaption}\item[{double}]{in\+\_\+x,  }\item[{double}]{in\+\_\+y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+\_\+x} & The X component of the \mbox{\hyperlink{struct_pose}{Pose}}. \\
+\hline
+{\em in\+\_\+y} & The Y component of the \mbox{\hyperlink{struct_pose}{Pose}}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_pose_aec0a9478daefa358aa2f1873cbaf0271}\label{struct_pose_aec0a9478daefa358aa2f1873cbaf0271}} 
+\index{Pose@{Pose}!operator=@{operator=}}
+\index{operator=@{operator=}!Pose@{Pose}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_pose}{Pose}}\& Pose\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_pose}{Pose}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default assignment operator. Simply copies the (x,y) values of another \mbox{\hyperlink{struct_pose}{Pose}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \mbox{\hyperlink{struct_pose}{Pose}} object to copy from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The left-\/hand-\/side \mbox{\hyperlink{struct_pose}{Pose}} object that is now identical (in value) to {\ttfamily other}. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{pose_8h}{pose.\+h}}\end{DoxyCompactItemize}

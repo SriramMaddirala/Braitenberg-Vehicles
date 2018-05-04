@@ -1,0 +1,71 @@
+\hypertarget{class_light}{}\section{Light Class Reference}
+\label{class_light}\index{Light@{Light}}
+
+
+Class representing an immobile obstacle within the \mbox{\hyperlink{class_arena}{Arena}}.  
+
+
+
+
+{\ttfamily \#include $<$light.\+h$>$}
+
+Inheritance diagram for Light\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_light}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_light_aeb5df09a25a32f19fdffa761268ba24f}\label{class_light_aeb5df09a25a32f19fdffa761268ba24f}} 
+\mbox{\hyperlink{class_light_aeb5df09a25a32f19fdffa761268ba24f}{Light}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_light_a61485eb0684868b503e1b96e6a3206c3}\label{class_light_a61485eb0684868b503e1b96e6a3206c3}} 
+void \mbox{\hyperlink{class_light_a61485eb0684868b503e1b96e6a3206c3}{Reset}} () override
+\begin{DoxyCompactList}\small\item\em Reset entity to a newly constructed state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_light_a49b2e32cf8173353ac4689fdadbb95d5}\label{class_light_a49b2e32cf8173353ac4689fdadbb95d5}} 
+std\+::string \mbox{\hyperlink{class_light_a49b2e32cf8173353ac4689fdadbb95d5}{get\+\_\+name}} () const override
+\begin{DoxyCompactList}\small\item\em Get the name of the Obstacle for visualization purposes, and to aid in debugging. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_light_a97934eec7489f9b072534f5e30a2d90d}\label{class_light_a97934eec7489f9b072534f5e30a2d90d}} 
+void {\bfseries Timestep\+Update} (unsigned int dt) override
+\item 
+\mbox{\Hypertarget{class_light_ad8f77c9857b26273d913a18be1311a11}\label{class_light_ad8f77c9857b26273d913a18be1311a11}} 
+void \mbox{\hyperlink{class_light_ad8f77c9857b26273d913a18be1311a11}{Handle\+Collision}} (Entity\+Type object\+\_\+type, \mbox{\hyperlink{class_arena_entity}{Arena\+Entity}} $\ast$object=N\+U\+LL) override
+\begin{DoxyCompactList}\small\item\em Handles the collision by setting the sensor to activated. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_light_a3a8b57cc040b0ab220cbc89d947fd2ab}\label{class_light_a3a8b57cc040b0ab220cbc89d947fd2ab}} 
+void \mbox{\hyperlink{class_light_a3a8b57cc040b0ab220cbc89d947fd2ab}{Increase\+Speed}} ()
+\begin{DoxyCompactList}\small\item\em Command that comes from the controller, then is passed to handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_light_ade825fe740b39f80aa934588e29d12f9}\label{class_light_ade825fe740b39f80aa934588e29d12f9}} 
+void \mbox{\hyperlink{class_light_ade825fe740b39f80aa934588e29d12f9}{Decrease\+Speed}} ()
+\begin{DoxyCompactList}\small\item\em Command that comes from the controller, then is passed to handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_light_a3d96e80148c96e450007da8358613187}\label{class_light_a3d96e80148c96e450007da8358613187}} 
+void \mbox{\hyperlink{class_light_a3d96e80148c96e450007da8358613187}{Turn\+Right}} ()
+\begin{DoxyCompactList}\small\item\em Command that comes from the controller, then is passed to handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_light_a571db6b9e9478fbced0cf9212fa44fb4}\label{class_light_a571db6b9e9478fbced0cf9212fa44fb4}} 
+void \mbox{\hyperlink{class_light_a571db6b9e9478fbced0cf9212fa44fb4}{Turn\+Left}} ()
+\begin{DoxyCompactList}\small\item\em Command that comes from the controller, then is passed to handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_light_a056a03454affa4a64dfd6188e5cf8f4d}\label{class_light_a056a03454affa4a64dfd6188e5cf8f4d}} 
+\mbox{\hyperlink{class_motion_handler}{Motion\+Handler}} \& {\bfseries get\+\_\+motion\+\_\+handler} ()
+\item 
+\mbox{\Hypertarget{class_light_af8a67e1e3d3e6b21c169cfd6bdaa8ab2}\label{class_light_af8a67e1e3d3e6b21c169cfd6bdaa8ab2}} 
+\mbox{\hyperlink{class_motion_behavior_differential}{Motion\+Behavior\+Differential}} {\bfseries get\+\_\+motion\+\_\+behavior} ()
+\item 
+\mbox{\Hypertarget{class_light_ae7c1f02a58289be086e15e06df29a8dc}\label{class_light_ae7c1f02a58289be086e15e06df29a8dc}} 
+int {\bfseries get\+\_\+state} ()
+\item 
+\mbox{\Hypertarget{class_light_a1296a373c45d54eb68a16b648d100c6c}\label{class_light_a1296a373c45d54eb68a16b648d100c6c}} 
+void {\bfseries set\+\_\+state} (int state)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class representing an immobile obstacle within the \mbox{\hyperlink{class_arena}{Arena}}. 
+
+Since obstacles are immobile, the Obstacle class is very simple. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/light.\+h\item 
+src/light.\+cc\end{DoxyCompactItemize}

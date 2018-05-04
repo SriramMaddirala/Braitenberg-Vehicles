@@ -1,0 +1,96 @@
+\hypertarget{class_food}{}\section{Food Class Reference}
+\label{class_food}\index{Food@{Food}}
+
+
+Class representing a immobile food within the \mbox{\hyperlink{class_arena}{Arena}}.  
+
+
+
+
+{\ttfamily \#include $<$food.\+h$>$}
+
+Inheritance diagram for Food\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_food}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_food_a75d4d7f76fd495cc8133302ca9fdc485}{Food}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_food_a1a12bfd50400e04b595c24a512317c1a}\label{class_food_a1a12bfd50400e04b595c24a512317c1a}} 
+void \mbox{\hyperlink{class_food_a1a12bfd50400e04b595c24a512317c1a}{Reset}} () override
+\begin{DoxyCompactList}\small\item\em Reset the \mbox{\hyperlink{class_food}{Food}} using the initialization parameters received by the constructor. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_food_a5c3bcd5109750a15ebb24b8a2a3cdd07}{get\+\_\+name}} () const override
+\begin{DoxyCompactList}\small\item\em Get the name of the \mbox{\hyperlink{class_food}{Food}} for visualization purposes, and to aid in debugging. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_food_a81c160e9e591b4a4eb9662efb7130ee8}{Is\+Captured}} () const
+\begin{DoxyCompactList}\small\item\em Getter for captured\+\_\+, which is the state of the food. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_food_a1ad8a3c17f9ab764215320ec11c7c40d}\label{class_food_a1ad8a3c17f9ab764215320ec11c7c40d}} 
+void \mbox{\hyperlink{class_food_a1ad8a3c17f9ab764215320ec11c7c40d}{set\+\_\+captured}} (bool state)
+\begin{DoxyCompactList}\small\item\em Setter for captured\+\_\+, which is the state of the food. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class representing a immobile food within the \mbox{\hyperlink{class_arena}{Arena}}. 
+
+\mbox{\hyperlink{class_food}{Food}} can enhance a \mbox{\hyperlink{class_robot}{Robot}}. If a \mbox{\hyperlink{class_robot}{Robot}} touches the \mbox{\hyperlink{class_food}{Food}}, it becomes a super robot.
+
+\mbox{\hyperlink{class_food}{Food}} have the capability of updating their own position when asked, and also track their own velocity and heading. They have a touch sensor for responding to collision events which is activated/deactivated on collision events. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_food_a75d4d7f76fd495cc8133302ca9fdc485}\label{class_food_a75d4d7f76fd495cc8133302ca9fdc485}} 
+\index{Food@{Food}!Food@{Food}}
+\index{Food@{Food}!Food@{Food}}
+\subsubsection{\texorpdfstring{Food()}{Food()}}
+{\footnotesize\ttfamily Food\+::\+Food (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & A food\+\_\+params passed down from \mbox{\hyperlink{main_8cc}{main.\+cc}} for the initialization of the \mbox{\hyperlink{class_food}{Food}}. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_food_a5c3bcd5109750a15ebb24b8a2a3cdd07}\label{class_food_a5c3bcd5109750a15ebb24b8a2a3cdd07}} 
+\index{Food@{Food}!get\+\_\+name@{get\+\_\+name}}
+\index{get\+\_\+name@{get\+\_\+name}!Food@{Food}}
+\subsubsection{\texorpdfstring{get\+\_\+name()}{get\_name()}}
+{\footnotesize\ttfamily std\+::string Food\+::get\+\_\+name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the name of the \mbox{\hyperlink{class_food}{Food}} for visualization purposes, and to aid in debugging. 
+
+\begin{DoxyReturn}{Returns}
+Name of the \mbox{\hyperlink{class_food}{Food}}. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_arena_entity_ad43152003033cf01ad86eeff1990b69a}{Arena\+Entity}}.
+
+\mbox{\Hypertarget{class_food_a81c160e9e591b4a4eb9662efb7130ee8}\label{class_food_a81c160e9e591b4a4eb9662efb7130ee8}} 
+\index{Food@{Food}!Is\+Captured@{Is\+Captured}}
+\index{Is\+Captured@{Is\+Captured}!Food@{Food}}
+\subsubsection{\texorpdfstring{Is\+Captured()}{IsCaptured()}}
+{\footnotesize\ttfamily bool Food\+::\+Is\+Captured (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Getter for captured\+\_\+, which is the state of the food. 
+
+\begin{DoxyReturn}{Returns}
+true if captured. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{food_8h}{food.\+h}}\item 
+src/\mbox{\hyperlink{food_8cc}{food.\+cc}}\end{DoxyCompactItemize}
