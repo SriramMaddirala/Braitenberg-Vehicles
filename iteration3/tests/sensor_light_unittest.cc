@@ -12,9 +12,11 @@ class SensorTest : public ::testing::Test {
  protected:
   virtual void SetUp() {
     // Create Sensors
-    csci3081::LightSensor *lightsensor= new csci3081::LightSensor(50,50);
-    csci3081::LightSensor *lightsensor2= new csci3081::LightSensor2(50,50);
+    lightsensor= new csci3081::LightSensor(50,50);
+    lightsensor2= new csci3081::LightSensor(50,50);
   }
+ csci3081::LightSensor *lightsensor;
+ csci3081::LightSensor *lightsensor2;
 };
 
 /*******************************************************************************
